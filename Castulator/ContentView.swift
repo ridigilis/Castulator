@@ -30,7 +30,7 @@ struct Result {
     }
         
     func getDiceImageView() -> some View {
-        return switch self.die {
+        switch self.die {
         case .d4: Image("d4").resizable().scaledToFit().opacity(0.25)
         case .d6: Image("d6").resizable().scaledToFit().opacity(0.25)
         case .d8: Image("d8").resizable().scaledToFit().opacity(0.25)
@@ -55,14 +55,14 @@ struct ContentView: View {
                     Text(String(result!.value))
                         .opacity(0.6)
                         .font(
-                            Font.custom("Zapfino", size: 84)
+                            Font.custom("MedievalSharp", size: 84)
                         )
                 } else {
                     Image("d20").resizable().scaledToFit().opacity(0.25)
                     Text("Castulator")
                         .opacity(0.6)
                         .font(
-                            Font.custom("Zapfino", size: 42)
+                            Font.custom("MedievalSharp", size: 42)
                         )
                 }
             }

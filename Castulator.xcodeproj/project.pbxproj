@@ -11,6 +11,7 @@
 		597DE9062B16621F006A85BC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597DE9052B16621F006A85BC /* ContentView.swift */; };
 		597DE9082B166221006A85BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 597DE9072B166221006A85BC /* Assets.xcassets */; };
 		597DE90B2B166221006A85BC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 597DE90A2B166221006A85BC /* Preview Assets.xcassets */; };
+		597DE9132B16CFDC006A85BC /* MedievalSharp-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597DE9112B16CD6A006A85BC /* MedievalSharp-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,8 @@
 		597DE9052B16621F006A85BC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		597DE9072B166221006A85BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		597DE90A2B166221006A85BC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		597DE9112B16CD6A006A85BC /* MedievalSharp-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MedievalSharp-Regular.ttf"; sourceTree = "<group>"; };
+		597DE9122B16CF67006A85BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +54,8 @@
 		597DE9022B16621F006A85BC /* Castulator */ = {
 			isa = PBXGroup;
 			children = (
+				597DE9122B16CF67006A85BC /* Info.plist */,
+				597DE9112B16CD6A006A85BC /* MedievalSharp-Regular.ttf */,
 				597DE9032B16621F006A85BC /* CastulatorApp.swift */,
 				597DE9052B16621F006A85BC /* ContentView.swift */,
 				597DE9072B166221006A85BC /* Assets.xcassets */,
@@ -125,6 +130,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				597DE9132B16CFDC006A85BC /* MedievalSharp-Regular.ttf in Resources */,
 				597DE90B2B166221006A85BC /* Preview Assets.xcassets in Resources */,
 				597DE9082B166221006A85BC /* Assets.xcassets in Resources */,
 			);
@@ -275,6 +281,7 @@
 				DEVELOPMENT_TEAM = K5U7BRQ5VA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Castulator/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -304,6 +311,7 @@
 				DEVELOPMENT_TEAM = K5U7BRQ5VA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Castulator/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
