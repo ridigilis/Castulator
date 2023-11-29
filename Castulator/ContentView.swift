@@ -31,13 +31,13 @@ struct Result {
         
     func getDiceImageView() -> some View {
         switch self.die {
-        case .d4: Image("d4").resizable().scaledToFit().opacity(0.25)
-        case .d6: Image("d6").resizable().scaledToFit().opacity(0.25)
-        case .d8: Image("d8").resizable().scaledToFit().opacity(0.25)
-        case .d10: Image("d10").resizable().scaledToFit().opacity(0.25)
-        case .d12: Image("d12").resizable().scaledToFit().opacity(0.25)
-        case .d20: Image("d20").resizable().scaledToFit().opacity(0.25)
-        case .d100: Image("d100").resizable().scaledToFit().opacity(0.25)
+        case .d4: Image("d4").resizable().scaledToFit().opacity(0.15)
+        case .d6: Image("d6").resizable().scaledToFit().opacity(0.15)
+        case .d8: Image("d8").resizable().scaledToFit().opacity(0.15)
+        case .d10: Image("d10").resizable().scaledToFit().opacity(0.15)
+        case .d12: Image("d12").resizable().scaledToFit().opacity(0.15)
+        case .d20: Image("d20").resizable().scaledToFit().opacity(0.15)
+        case .d100: Image("d100").resizable().scaledToFit().opacity(0.15)
         }
     }
 }
