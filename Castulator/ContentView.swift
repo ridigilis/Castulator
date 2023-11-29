@@ -6,124 +6,71 @@
 //
 
 import SwiftUI
-
-enum Dice: String {
-    case d2, d4, d6, d8, d10, d12, d20, d100
-}
-
-struct Result {
-    let value: UInt
-    let die: Dice
-
-    init(_ die: Dice) {
-        switch die {
-        case .d2: self.value = UInt.random(in: 0...1)
-        case .d4: self.value = UInt.random(in: 1...4)
-        case .d6: self.value = UInt.random(in: 1...6)
-        case .d8: self.value = UInt.random(in: 1...8)
-        case .d10: self.value = UInt.random(in: 0...9)
-        case .d12: self.value = UInt.random(in: 1...12)
-        case .d20: self.value = UInt.random(in: 1...20)
-        case .d100: self.value = UInt.random(in: 0...99)
-        }
-        
-        self.die = die
-    }
-        
-    func getDiceImageView() -> some View {
-        switch self.die {
-        case .d2: Image("d2").resizable().scaledToFit().opacity(0.15)
-        case .d4: Image("d4").resizable().scaledToFit().opacity(0.15)
-        case .d6: Image("d6").resizable().scaledToFit().opacity(0.15)
-        case .d8: Image("d8").resizable().scaledToFit().opacity(0.15)
-        case .d10: Image("d10").resizable().scaledToFit().opacity(0.15)
-        case .d12: Image("d12").resizable().scaledToFit().opacity(0.15)
-        case .d20: Image("d20").resizable().scaledToFit().opacity(0.15)
-        case .d100: Image("d100").resizable().scaledToFit().opacity(0.15)
-        }
-    }
-}
+import SwiftData
 
 struct ContentView: View {
-    @State private var result: Result?
+    @Environment(\.modelContext) var modelContext
+    @Query var results: [CastResult]
+    @State private var result: CastResult?
+    @State private var showHistorySheet = false
+    
+    let dateFormatter = RelativeDateTimeFormatter()
     
     var body: some View {
-        VStack {
-            Spacer()
-            
-            ZStack {
+        NavigationStack {
+            VStack {
+                Spacer()
+                
                 if result != nil {
-                    result!.getDiceImageView()
-                    Text(String(result!.value))
-                        .opacity(0.6)
-                        .font(
-                            Font.custom("MedievalSharp", size: 84)
-                        )
+                    CastResultView(result: result!)
                 } else {
-                    Image("d20").resizable().scaledToFit().opacity(0.25)
-                    Text("Castulator")
-                        .opacity(0.6)
-                        .font(
-                            Font.custom("MedievalSharp", size: 42)
-                        )
-                }
-            }
-            
-            Spacer()
-            
-            Grid {
-                GridRow {
-                    Button {
-                        result = Result(.d2)
-                    } label: {
-                        Image("d2").resizable().scaledToFit()
-                    }
-                    Button {
-                        result = Result(.d4)
-                    } label: {
-                        Image("d4").resizable().scaledToFit()
-                    }
-                    Button {
-                        result = Result(.d6)
-                    } label: {
-                        Image("d6").resizable().scaledToFit()
-                    }
-                    Button {
-                        result = Result(.d8)
-                    } label: {
-                        Image("d8").resizable().scaledToFit()
+                    ZStack {
+                        Image("d20").resizable().scaledToFit().opacity(0.15)
+                        Text("Castulator")
+                            .opacity(0.6)
+                            .font(
+                                Font.custom("MedievalSharp", size: 42)
+                            )
                     }
                 }
                 
-                GridRow {
-                    Button {
-                        result = Result(.d10)
-                    } label: {
-                        Image("d10").resizable().scaledToFit()
+                Spacer()
+                
+                Grid {
+                    GridRow {
+                        DiceButton(die: .d2, result: $result, results: results)
+                        DiceButton(die: .d4, result: $result, results: results)
+                        DiceButton(die: .d6, result: $result, results: results)
+                        DiceButton(die: .d8, result: $result, results: results)
                     }
-                    Button {
-                        result = Result(.d12)
-                    } label: {
-                        Image("d12").resizable().scaledToFit()
-                    }
-                    Button {
-                        result = Result(.d20)
-                    } label: {
-                        Image("d20").resizable().scaledToFit()
-                    }
-                    Button {
-                        result = Result(.d100)
-                    } label: {
-                        Image("d100").resizable().scaledToFit()
+                    
+                    GridRow {
+                        DiceButton(die: .d10, result: $result, results: results)
+                        DiceButton(die: .d12, result: $result, results: results)
+                        DiceButton(die: .d20, result: $result, results: results)
+                        DiceButton(die: .d100, result: $result, results: results)
                     }
                 }
             }
+            .padding()
+            .background(Image("parchment"))
+            .toolbar {
+                Button("History") {
+                    showHistorySheet.toggle()
+                }.font(Font.custom("MedievalSharp", size: 16))
+            }
+            .sheet(isPresented: $showHistorySheet, content: {
+                List(results.sorted(by: {$0.castDate > $1.castDate})) { res in
+                    HStack {
+                        CastResultView(result: res)
+                        Text("\(dateFormatter.localizedString(fromTimeInterval: res.castDate.timeIntervalSinceNow))")
+                    }
+                }
+            })
         }
-        .padding()
-        .background(Image("parchment"))
     }
 }
 
-#Preview {
-    ContentView()
-}
+//#Preview {
+//    ContentView()
+//}

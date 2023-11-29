@@ -12,6 +12,9 @@
 		597DE9082B166221006A85BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 597DE9072B166221006A85BC /* Assets.xcassets */; };
 		597DE90B2B166221006A85BC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 597DE90A2B166221006A85BC /* Preview Assets.xcassets */; };
 		597DE9132B16CFDC006A85BC /* MedievalSharp-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597DE9112B16CD6A006A85BC /* MedievalSharp-Regular.ttf */; };
+		598EA1722B1788DC00E6A93B /* CastResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598EA1712B1788DC00E6A93B /* CastResult.swift */; };
+		598EA1762B1789B700E6A93B /* CastResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598EA1752B1789B700E6A93B /* CastResultView.swift */; };
+		598EA1782B178BB100E6A93B /* DiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598EA1772B178BB100E6A93B /* DiceButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		597DE90A2B166221006A85BC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		597DE9112B16CD6A006A85BC /* MedievalSharp-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MedievalSharp-Regular.ttf"; sourceTree = "<group>"; };
 		597DE9122B16CF67006A85BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		598EA1712B1788DC00E6A93B /* CastResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastResult.swift; sourceTree = "<group>"; };
+		598EA1752B1789B700E6A93B /* CastResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastResultView.swift; sourceTree = "<group>"; };
+		598EA1772B178BB100E6A93B /* DiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +66,9 @@
 				597DE9052B16621F006A85BC /* ContentView.swift */,
 				597DE9072B166221006A85BC /* Assets.xcassets */,
 				597DE9092B166221006A85BC /* Preview Content */,
+				598EA1712B1788DC00E6A93B /* CastResult.swift */,
+				598EA1752B1789B700E6A93B /* CastResultView.swift */,
+				598EA1772B178BB100E6A93B /* DiceButton.swift */,
 			);
 			path = Castulator;
 			sourceTree = "<group>";
@@ -143,7 +152,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				598EA1762B1789B700E6A93B /* CastResultView.swift in Sources */,
+				598EA1782B178BB100E6A93B /* DiceButton.swift in Sources */,
 				597DE9062B16621F006A85BC /* ContentView.swift in Sources */,
+				598EA1722B1788DC00E6A93B /* CastResult.swift in Sources */,
 				597DE9042B16621F006A85BC /* CastulatorApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

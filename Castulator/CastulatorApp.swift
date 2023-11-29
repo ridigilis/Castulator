@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct CastulatorApp: App {
@@ -13,5 +14,6 @@ struct CastulatorApp: App {
         WindowGroup {
             ContentView().preferredColorScheme(.light)
         }
+        .modelContainer(for: CastResult.self)
     }
 }
