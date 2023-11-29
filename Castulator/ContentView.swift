@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum Dice: String {
-    case d4, d6, d8, d10, d12, d20, d100
+    case d2, d4, d6, d8, d10, d12, d20, d100
 }
 
 struct Result {
@@ -17,6 +17,7 @@ struct Result {
 
     init(_ die: Dice) {
         switch die {
+        case .d2: self.value = UInt.random(in: 0...1)
         case .d4: self.value = UInt.random(in: 1...4)
         case .d6: self.value = UInt.random(in: 1...6)
         case .d8: self.value = UInt.random(in: 1...8)
@@ -31,6 +32,7 @@ struct Result {
         
     func getDiceImageView() -> some View {
         switch self.die {
+        case .d2: Image("d2").resizable().scaledToFit().opacity(0.15)
         case .d4: Image("d4").resizable().scaledToFit().opacity(0.15)
         case .d6: Image("d6").resizable().scaledToFit().opacity(0.15)
         case .d8: Image("d8").resizable().scaledToFit().opacity(0.15)
@@ -72,6 +74,11 @@ struct ContentView: View {
             Grid {
                 GridRow {
                     Button {
+                        result = Result(.d2)
+                    } label: {
+                        Image("d2").resizable().scaledToFit()
+                    }
+                    Button {
                         result = Result(.d4)
                     } label: {
                         Image("d4").resizable().scaledToFit()
@@ -86,13 +93,14 @@ struct ContentView: View {
                     } label: {
                         Image("d8").resizable().scaledToFit()
                     }
+                }
+                
+                GridRow {
                     Button {
                         result = Result(.d10)
                     } label: {
                         Image("d10").resizable().scaledToFit()
                     }
-                }
-                GridRow {
                     Button {
                         result = Result(.d12)
                     } label: {
