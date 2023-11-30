@@ -12,12 +12,18 @@ struct CastResultView: View {
     
     var body: some View {
         ZStack {
-            Image(result.die.rawValue).resizable().scaledToFit().opacity(0.15)
+            Image(result.die.rawValue)
+                .resizable()
+                .scaledToFit()
+                .frame(maxWidth: 256, maxHeight: 256)
+                .opacity(0.5)
             Text(String(result.value))
-                .opacity(0.6)
                 .font(
-                    Font.custom("MedievalSharp", size: 84)
+                    Font.custom("MedievalSharp", size: 48)
                 )
+                .foregroundStyle(Color.white)
+                .background(Circle().frame(width: 96, height: 96))
+                .opacity(0.6)
         }
     }
 }

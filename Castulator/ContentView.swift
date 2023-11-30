@@ -12,9 +12,6 @@ struct ContentView: View {
     @Environment(\.modelContext) var modelContext
     @Query var results: [CastResult]
     @State private var result: CastResult?
-    @State private var showHistorySheet = false
-    
-    let dateFormatter = RelativeDateTimeFormatter()
     
     var body: some View {
         NavigationStack {
@@ -55,18 +52,16 @@ struct ContentView: View {
             .padding()
             .background(Image("parchment"))
             .toolbar {
-                Button("History") {
-                    showHistorySheet.toggle()
-                }.font(Font.custom("MedievalSharp", size: 16))
-            }
-            .sheet(isPresented: $showHistorySheet, content: {
-                List(results.sorted(by: {$0.castDate > $1.castDate})) { res in
-                    HStack {
-                        CastResultView(result: res)
-                        Text("\(dateFormatter.localizedString(fromTimeInterval: res.castDate.timeIntervalSinceNow))")
+                NavigationLink("History") {
+                    List(results.sorted(by: {$0.castDate > $1.castDate})) { res in
+                        HStack {
+                            CastResultHistoryView(result: res)
+                        }
+                        .frame(maxHeight: 64)
                     }
                 }
-            })
+                .font(Font.custom("MedievalSharp", size: 16))
+            }
         }
     }
 }

@@ -15,6 +15,7 @@
 		598EA1722B1788DC00E6A93B /* CastResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598EA1712B1788DC00E6A93B /* CastResult.swift */; };
 		598EA1762B1789B700E6A93B /* CastResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598EA1752B1789B700E6A93B /* CastResultView.swift */; };
 		598EA1782B178BB100E6A93B /* DiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598EA1772B178BB100E6A93B /* DiceButton.swift */; };
+		59D04A4B2B182A34005631AD /* CastResultHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D04A4A2B182A34005631AD /* CastResultHistoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		598EA1712B1788DC00E6A93B /* CastResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastResult.swift; sourceTree = "<group>"; };
 		598EA1752B1789B700E6A93B /* CastResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastResultView.swift; sourceTree = "<group>"; };
 		598EA1772B178BB100E6A93B /* DiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceButton.swift; sourceTree = "<group>"; };
+		59D04A4A2B182A34005631AD /* CastResultHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastResultHistoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				597DE9092B166221006A85BC /* Preview Content */,
 				598EA1712B1788DC00E6A93B /* CastResult.swift */,
 				598EA1752B1789B700E6A93B /* CastResultView.swift */,
+				59D04A4A2B182A34005631AD /* CastResultHistoryView.swift */,
 				598EA1772B178BB100E6A93B /* DiceButton.swift */,
 			);
 			path = Castulator;
@@ -157,6 +160,7 @@
 				597DE9062B16621F006A85BC /* ContentView.swift in Sources */,
 				598EA1722B1788DC00E6A93B /* CastResult.swift in Sources */,
 				597DE9042B16621F006A85BC /* CastulatorApp.swift in Sources */,
+				59D04A4B2B182A34005631AD /* CastResultHistoryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
