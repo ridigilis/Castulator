@@ -53,14 +53,19 @@ struct ContentView: View {
             .background(Image("parchment"))
             .toolbar {
                 NavigationLink {
-                    Group {
-                        List(results.sorted(by: {$0.castDate > $1.castDate})) { res in
-                            HStack {
-                                CastResultHistoryView(result: res)
+                    VStack {
+                        if results.isEmpty {
+                            Text("No Cast Result History to show.").font(.subheadline).opacity(0.6)
+                            Text("Try casting some dice!").font(.subheadline).opacity(0.6)
+                        } else {
+                            List(results.sorted(by: {$0.castDate > $1.castDate})) { res in
+                                HStack {
+                                    CastResultHistoryView(result: res)
+                                }
+                                .frame(maxHeight: 64)
+                                .listRowBackground(Color.clear)
+                                .listRowSeparator(.hidden)
                             }
-                            .frame(maxHeight: 64)
-                            .listRowBackground(Color.clear)
-                            .listRowSeparator(.hidden)
                         }
                     }
                     .scrollContentBackground(.hidden)
@@ -71,7 +76,7 @@ struct ContentView: View {
                             // not sure if history is important enough to warrant a warning
                             // leaving it out for now
                             results.forEach { modelContext.delete($0) }
-                        }
+                        }.disabled(results.isEmpty)
                     }
                 } label: {
                     Image(systemName: "list.number")
