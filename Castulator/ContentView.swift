@@ -82,7 +82,7 @@ struct ContentView: View {
                     Image(systemName: "list.number")
                 }
             }
-        }
+        }.tint(.primary)
     }
 }
 
