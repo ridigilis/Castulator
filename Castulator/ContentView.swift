@@ -65,6 +65,14 @@ struct ContentView: View {
                     }
                     .scrollContentBackground(.hidden)
                     .background { Image("parchment") }
+                    .toolbar {
+                        Button("Clear") {
+                            // Developer Thoughts:
+                            // not sure if history is important enough to warrant a warning
+                            // leaving it out for now
+                            results.forEach { modelContext.delete($0) }
+                        }
+                    }
                 } label: {
                     Image(systemName: "list.number")
                 }
