@@ -68,6 +68,7 @@ struct ContentView: View {
                             }
                         }
                     }
+                    .navigationTitle("Cast History")
                     .scrollContentBackground(.hidden)
                     .background { Image("parchment") }
                     .toolbar {
@@ -80,6 +81,23 @@ struct ContentView: View {
                     }
                 } label: {
                     Image(systemName: "list.number")
+                }
+                
+                
+                NavigationLink {
+                    VStack {
+                        
+                    }
+                    .toolbar {
+                        Button {
+                            
+                        } label: {
+                            Image(systemName: "plus")
+                        }
+                    }
+                    .navigationTitle("Custom Functions")
+                } label: {
+                    Image(systemName: "fn")
                 }
             }
         }.tint(.primary)
