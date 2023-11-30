@@ -27,5 +27,6 @@ struct CastResultHistoryView: View {
             Text("\(dateFormatter.localizedString(fromTimeInterval: result.castDate.timeIntervalSinceNow))")
         }
         .frame(alignment: .center)
+        .background(Color.clear)
     }
 }

@@ -52,15 +52,22 @@ struct ContentView: View {
             .padding()
             .background(Image("parchment"))
             .toolbar {
-                NavigationLink("History") {
-                    List(results.sorted(by: {$0.castDate > $1.castDate})) { res in
-                        HStack {
-                            CastResultHistoryView(result: res)
+                NavigationLink {
+                    Group {
+                        List(results.sorted(by: {$0.castDate > $1.castDate})) { res in
+                            HStack {
+                                CastResultHistoryView(result: res)
+                            }
+                            .frame(maxHeight: 64)
+                            .listRowBackground(Color.clear)
+                            .listRowSeparator(.hidden)
                         }
-                        .frame(maxHeight: 64)
                     }
+                    .scrollContentBackground(.hidden)
+                    .background { Image("parchment") }
+                } label: {
+                    Image(systemName: "list.number")
                 }
-                .font(Font.custom("MedievalSharp", size: 16))
             }
         }
     }
