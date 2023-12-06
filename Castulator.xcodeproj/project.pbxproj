@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5966DCC92B1A4C2800FE4602 /* EditCustomFunctionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5966DCC82B1A4C2800FE4602 /* EditCustomFunctionView.swift */; };
+		5966DCE52B20C94D00FE4602 /* CustomFunctionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5966DCE42B20C94D00FE4602 /* CustomFunctionListView.swift */; };
 		597DE9042B16621F006A85BC /* CastulatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597DE9032B16621F006A85BC /* CastulatorApp.swift */; };
 		597DE9062B16621F006A85BC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597DE9052B16621F006A85BC /* ContentView.swift */; };
 		597DE9082B166221006A85BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 597DE9072B166221006A85BC /* Assets.xcassets */; };
@@ -16,9 +18,12 @@
 		598EA1762B1789B700E6A93B /* CastResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598EA1752B1789B700E6A93B /* CastResultView.swift */; };
 		598EA1782B178BB100E6A93B /* DiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598EA1772B178BB100E6A93B /* DiceButton.swift */; };
 		59D04A4B2B182A34005631AD /* CastResultHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D04A4A2B182A34005631AD /* CastResultHistoryView.swift */; };
+		59D04A4D2B191E11005631AD /* CustomFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D04A4C2B191E11005631AD /* CustomFunction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5966DCC82B1A4C2800FE4602 /* EditCustomFunctionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCustomFunctionView.swift; sourceTree = "<group>"; };
+		5966DCE42B20C94D00FE4602 /* CustomFunctionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFunctionListView.swift; sourceTree = "<group>"; };
 		597DE9002B16621F006A85BC /* Castulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Castulator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		597DE9032B16621F006A85BC /* CastulatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastulatorApp.swift; sourceTree = "<group>"; };
 		597DE9052B16621F006A85BC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -30,6 +35,7 @@
 		598EA1752B1789B700E6A93B /* CastResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastResultView.swift; sourceTree = "<group>"; };
 		598EA1772B178BB100E6A93B /* DiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceButton.swift; sourceTree = "<group>"; };
 		59D04A4A2B182A34005631AD /* CastResultHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastResultHistoryView.swift; sourceTree = "<group>"; };
+		59D04A4C2B191E11005631AD /* CustomFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFunction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,7 @@
 		597DE9022B16621F006A85BC /* Castulator */ = {
 			isa = PBXGroup;
 			children = (
+				59D04A4C2B191E11005631AD /* CustomFunction.swift */,
 				597DE9122B16CF67006A85BC /* Info.plist */,
 				597DE9112B16CD6A006A85BC /* MedievalSharp-Regular.ttf */,
 				597DE9032B16621F006A85BC /* CastulatorApp.swift */,
@@ -72,6 +79,8 @@
 				598EA1752B1789B700E6A93B /* CastResultView.swift */,
 				59D04A4A2B182A34005631AD /* CastResultHistoryView.swift */,
 				598EA1772B178BB100E6A93B /* DiceButton.swift */,
+				5966DCC82B1A4C2800FE4602 /* EditCustomFunctionView.swift */,
+				5966DCE42B20C94D00FE4602 /* CustomFunctionListView.swift */,
 			);
 			path = Castulator;
 			sourceTree = "<group>";
@@ -156,11 +165,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				598EA1762B1789B700E6A93B /* CastResultView.swift in Sources */,
+				5966DCC92B1A4C2800FE4602 /* EditCustomFunctionView.swift in Sources */,
 				598EA1782B178BB100E6A93B /* DiceButton.swift in Sources */,
 				597DE9062B16621F006A85BC /* ContentView.swift in Sources */,
 				598EA1722B1788DC00E6A93B /* CastResult.swift in Sources */,
 				597DE9042B16621F006A85BC /* CastulatorApp.swift in Sources */,
+				59D04A4D2B191E11005631AD /* CustomFunction.swift in Sources */,
 				59D04A4B2B182A34005631AD /* CastResultHistoryView.swift in Sources */,
+				5966DCE52B20C94D00FE4602 /* CustomFunctionListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

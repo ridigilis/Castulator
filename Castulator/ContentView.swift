@@ -52,58 +52,46 @@ struct ContentView: View {
             .padding()
             .background(Image("parchment"))
             .toolbar {
-                NavigationLink {
-                    VStack {
-                        if results.isEmpty {
-                            Text("No Cast Result History to show.").font(.subheadline).opacity(0.6)
-                            Text("Try casting some dice!").font(.subheadline).opacity(0.6)
-                        } else {
-                            List(results.sorted(by: {$0.castDate > $1.castDate})) { res in
-                                HStack {
-                                    CastResultHistoryView(result: res)
+                ToolbarItemGroup {
+                        NavigationLink {
+                            VStack {
+                                if results.isEmpty {
+                                    Text("No Cast Result History to show.").font(.subheadline).opacity(0.6)
+                                    Text("Try casting some dice!").font(.subheadline).opacity(0.6)
+                                } else {
+                                    List(results.sorted(by: {$0.castDate > $1.castDate})) { res in
+                                        HStack {
+                                            CastResultHistoryView(result: res)
+                                        }
+                                        .frame(maxHeight: 64)
+                                        .listRowBackground(Color.clear)
+                                        .listRowSeparator(.hidden)
+                                    }
                                 }
-                                .frame(maxHeight: 64)
-                                .listRowBackground(Color.clear)
-                                .listRowSeparator(.hidden)
                             }
-                        }
-                    }
-                    .navigationTitle("Cast History")
-                    .scrollContentBackground(.hidden)
-                    .background { Image("parchment") }
-                    .toolbar {
-                        Button("Clear") {
-                            // Developer Thoughts:
-                            // not sure if history is important enough to warrant a warning
-                            // leaving it out for now
-                            results.forEach { modelContext.delete($0) }
-                        }.disabled(results.isEmpty)
-                    }
-                } label: {
-                    Image(systemName: "list.number")
-                }
-                
-                
-                NavigationLink {
-                    VStack {
-                        
-                    }
-                    .toolbar {
-                        Button {
-                            
+                            .navigationTitle("Cast History")
+                            .scrollContentBackground(.hidden)
+                            .background { Image("parchment") }
+                            .toolbar {
+                                Button("Clear") {
+                                    results.forEach { modelContext.delete($0) }
+                                }.disabled(results.isEmpty)
+                            }
                         } label: {
-                            Image(systemName: "plus")
+                            Image(systemName: "list.number")
                         }
-                    }
-                    .navigationTitle("Custom Functions")
-                } label: {
-                    Image(systemName: "fn")
+
+                        NavigationLink {
+                            CustomFunctionListView()
+                                .navigationTitle("Custom Functions")
+                                .scrollContentBackground(.hidden)
+                                .background { Image("parchment") }
+                        } label: {
+                            Image(systemName: "fn")
+                        }
+                    
                 }
             }
         }.tint(.primary)
     }
 }
-
-//#Preview {
-//    ContentView()
-//}

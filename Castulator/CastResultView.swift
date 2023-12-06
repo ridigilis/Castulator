@@ -27,7 +27,3 @@ struct CastResultView: View {
         }
     }
 }
-
-#Preview {
-    CastResultView(result: CastResult(.d20))
-}
