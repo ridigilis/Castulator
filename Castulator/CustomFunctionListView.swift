@@ -12,27 +12,30 @@ struct CustomFunctionListView: View {
     @Environment(\.modelContext) var modelContext
     @Query var customFunctions: [CustomFunction]
     
-    func delete(at offsets: IndexSet) {
-        
-    }
-    
     var body: some View {
-        List {
-            ForEach(customFunctions) { fn in
-                NavigationLink(fn.name) {
-                    EditCustomFunctionView(customFunction: fn)
+        VStack {
+            if customFunctions.isEmpty {
+                Text("No Cast Result History to show.").font(.subheadline).opacity(0.6)
+                Text("Try casting some dice!").font(.subheadline).opacity(0.6)
+            } else {
+                List {
+                    ForEach(customFunctions) { fn in
+                        NavigationLink(fn.name) {
+                            EditCustomFunctionView(customFunction: fn)
+                        }
+                        .swipeActions {
+                            Button {
+                                modelContext.delete(fn)
+                            } label: {
+                                Label("Delete", systemImage: "trash")
+                            }.tint(.red)
+                        }
+                    }
                 }
-                .swipeActions {
-                    Button {
-                        modelContext.delete(fn)
-                    } label: {
-                        Label("Delete", systemImage: "trash")
-                    }.tint(.red)
-                }
+                .frame(alignment: .center)
+                .background(Color.clear)
             }
         }
-        .frame(alignment: .center)
-        .background(Color.clear)
         .toolbar {
             ToolbarItem {
                 NavigationLink {
@@ -46,10 +49,6 @@ struct CustomFunctionListView: View {
                     Image(systemName: "plus")
                 }
             }
-        }
-        
-        if customFunctions.isEmpty {
-            Button("Create a custom function!") {}
         }
     }
 }
