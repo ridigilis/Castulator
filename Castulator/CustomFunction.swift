@@ -16,9 +16,6 @@ class CustomFunction: ObservableObject {
         willSet {
             objectWillChange.send()
         }
-        didSet {
-            print(components)
-        }
     }
     
     init(name: String, components: [Component]) {
