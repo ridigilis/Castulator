@@ -19,6 +19,7 @@
 		598EA1782B178BB100E6A93B /* DiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598EA1772B178BB100E6A93B /* DiceButton.swift */; };
 		59D04A4B2B182A34005631AD /* CastResultHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D04A4A2B182A34005631AD /* CastResultHistoryView.swift */; };
 		59D04A4D2B191E11005631AD /* CustomFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D04A4C2B191E11005631AD /* CustomFunction.swift */; };
+		59E573FE2B23A716008ADF2A /* QuickCastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E573FD2B23A716008ADF2A /* QuickCastView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		598EA1772B178BB100E6A93B /* DiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceButton.swift; sourceTree = "<group>"; };
 		59D04A4A2B182A34005631AD /* CastResultHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastResultHistoryView.swift; sourceTree = "<group>"; };
 		59D04A4C2B191E11005631AD /* CustomFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFunction.swift; sourceTree = "<group>"; };
+		59E573FD2B23A716008ADF2A /* QuickCastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickCastView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				598EA1772B178BB100E6A93B /* DiceButton.swift */,
 				5966DCC82B1A4C2800FE4602 /* EditCustomFunctionView.swift */,
 				5966DCE42B20C94D00FE4602 /* CustomFunctionListView.swift */,
+				59E573FD2B23A716008ADF2A /* QuickCastView.swift */,
 			);
 			path = Castulator;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 				59D04A4D2B191E11005631AD /* CustomFunction.swift in Sources */,
 				59D04A4B2B182A34005631AD /* CastResultHistoryView.swift in Sources */,
 				5966DCE52B20C94D00FE4602 /* CustomFunctionListView.swift in Sources */,
+				59E573FE2B23A716008ADF2A /* QuickCastView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
