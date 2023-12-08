@@ -18,8 +18,7 @@ struct CustomFunctionListView: View {
                 Text("No Cast Result History to show.").font(.subheadline).opacity(0.6)
                 Text("Try casting some dice!").font(.subheadline).opacity(0.6)
             } else {
-                List {
-                    ForEach(customFunctions) { fn in
+                List(customFunctions) { fn in
                         NavigationLink(fn.name) {
                             EditCustomFunctionView(customFunction: fn)
                         }
@@ -32,9 +31,6 @@ struct CustomFunctionListView: View {
                         }
                     }
                 }
-                .frame(alignment: .center)
-                .background(Color.clear)
-            }
         }
         .toolbar {
             ToolbarItem {

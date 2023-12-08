@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct DicePadView: View {
-    @ObservedObject var customFunction: CustomFunction
     var onButtonPress: (Operation?, Dice?) -> Void
     
     var body: some View {
@@ -95,7 +94,7 @@ struct DicePadView: View {
 struct EditCustomFunctionView: View {
     @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
-    @StateObject var customFunction: CustomFunction
+    @State var customFunction: CustomFunction
     
     func changeWorkingComponents(op: Operation?, die: Dice?) {
         if op != nil {
@@ -150,7 +149,7 @@ struct EditCustomFunctionView: View {
                 }
             }
                 
-            DicePadView(customFunction: customFunction, onButtonPress: changeWorkingComponents)
+            DicePadView(onButtonPress: changeWorkingComponents)
         }
         .scrollContentBackground(.hidden)
         .background { Image("parchment") }
