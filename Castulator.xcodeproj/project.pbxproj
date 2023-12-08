@@ -20,6 +20,7 @@
 		59D04A4B2B182A34005631AD /* CastResultHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D04A4A2B182A34005631AD /* CastResultHistoryView.swift */; };
 		59D04A4D2B191E11005631AD /* CustomFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D04A4C2B191E11005631AD /* CustomFunction.swift */; };
 		59E573FE2B23A716008ADF2A /* QuickCastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E573FD2B23A716008ADF2A /* QuickCastView.swift */; };
+		59E574002B23AC54008ADF2A /* CastulatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E573FF2B23AC54008ADF2A /* CastulatorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		59D04A4A2B182A34005631AD /* CastResultHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastResultHistoryView.swift; sourceTree = "<group>"; };
 		59D04A4C2B191E11005631AD /* CustomFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFunction.swift; sourceTree = "<group>"; };
 		59E573FD2B23A716008ADF2A /* QuickCastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickCastView.swift; sourceTree = "<group>"; };
+		59E573FF2B23AC54008ADF2A /* CastulatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastulatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				5966DCC82B1A4C2800FE4602 /* EditCustomFunctionView.swift */,
 				5966DCE42B20C94D00FE4602 /* CustomFunctionListView.swift */,
 				59E573FD2B23A716008ADF2A /* QuickCastView.swift */,
+				59E573FF2B23AC54008ADF2A /* CastulatorView.swift */,
 			);
 			path = Castulator;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 			files = (
 				598EA1762B1789B700E6A93B /* CastResultView.swift in Sources */,
 				5966DCC92B1A4C2800FE4602 /* EditCustomFunctionView.swift in Sources */,
+				59E574002B23AC54008ADF2A /* CastulatorView.swift in Sources */,
 				598EA1782B178BB100E6A93B /* DiceButton.swift in Sources */,
 				597DE9062B16621F006A85BC /* ContentView.swift in Sources */,
 				598EA1722B1788DC00E6A93B /* CastResult.swift in Sources */,

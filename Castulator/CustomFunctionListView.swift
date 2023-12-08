@@ -21,7 +21,7 @@ struct CustomFunctionListView: View {
                     } else {
                         List(customFunctions) { fn in
                                 NavigationLink(fn.name) {
-                                    EditCustomFunctionView(customFunction: fn)
+//                                    EditCustomFunctionView(customFunction: fn)
                                 }
                                 .swipeActions {
                                     Button {
@@ -36,12 +36,12 @@ struct CustomFunctionListView: View {
                 .toolbar {
                     ToolbarItem {
                         NavigationLink {
-                            EditCustomFunctionView(
-                                customFunction: CustomFunction(
-                                    name: "New Custom Function",
-                                    components: [Component(op: .add, dice: [])]
-                                )
-                            )
+//                            EditCustomFunctionView(
+//                                customFunction: CustomFunction(
+//                                    name: "New Custom Function",
+//                                    components: [Component(op: .add, dice: [])]
+//                                )
+//                            )
                         } label: {
                             Image(systemName: "plus")
                         }

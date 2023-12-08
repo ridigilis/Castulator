@@ -33,17 +33,17 @@ enum Operation: Codable {
     case add, subtract, multiply, divide
 }
 
-func castCustomFunction(_ function: CustomFunction) -> Double {
-    function.components.reduce(0) { acc, cur in
+func castCustomFunction(_ components: [Component]) -> Double {
+    components.reduce(0) { acc, cur in
         let result = cur.dice.reduce(UInt(0)) { a, die in
             return a + castDie(die)
         }
         
         switch cur.op {
-        case .add: return acc + Double(result)
-        case .subtract: return acc - Double(result)
-        case .multiply: return acc * Double(result)
-        case .divide: return acc / Double(result)
+        case .add: return acc + floor(Double(result))
+        case .subtract: return acc - floor(Double(result))
+        case .multiply: return acc * floor(Double(result))
+        case .divide: return acc / floor(Double(result))
         }
     }
 }
