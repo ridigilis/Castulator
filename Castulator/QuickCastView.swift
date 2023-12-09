@@ -50,7 +50,7 @@ struct QuickCastView: View {
                 }
             }
             .padding()
-            .background(Image("parchment-light"))
+            .background(Image("parchment-light").resizable().scaledToFill().ignoresSafeArea(.all).opacity(0.6))
             .toolbar {
                 ToolbarItemGroup {
                     NavigationLink {

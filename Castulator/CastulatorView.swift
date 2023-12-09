@@ -109,89 +109,89 @@ struct DicePadView: View {
                     onButtonPress(nil, .d20)
                 } label: {
                     Image("d20").resizable().scaledToFit()
-                }.padding(12)
+                }
                 
                 Button {
                     onButtonPress(nil, .d100)
                 } label: {
                     Image("d100").resizable().scaledToFit()
-                }.padding(12)
+                }
                 
                 Button {
                     onButtonPress(.divide, nil)
                 } label: {
-                    Image(systemName: "divide").resizable().scaledToFit()
-                }.padding(12)
+                    Image("divide").resizable().scaledToFit()
+                }
             }
             GridRow {
                 Button {
                     onButtonPress(nil, .d10)
                 } label: {
                     Image("d10").resizable().scaledToFit()
-                }.padding(12)
+                }
                 
                 Button {
                     onButtonPress(nil, .d12)
                 } label: {
                     Image("d12").resizable().scaledToFit()
-                }.padding(12)
+                }
                 
                 Button {
                     onButtonPress(.multiply, nil)
                 } label: {
-                    Image(systemName: "multiply").resizable().scaledToFit()
-                }.padding(12)
+                    Image("multiply").resizable().scaledToFit()
+                }
             }
             GridRow {
                 Button {
                     onButtonPress(nil, .d6)
                 } label: {
                     Image("d6").resizable().scaledToFit()
-                }.padding(12)
+                }
                 
                 Button {
                     onButtonPress(nil, .d8)
                 } label: {
                     Image("d8").resizable().scaledToFit()
-                }.padding(12)
+                }
                 
                 Button {
                     onButtonPress(.subtract, nil)
                 } label: {
-                    Image(systemName: "minus").resizable().scaledToFit()
-                }.padding(12)
+                    Image("minus").resizable().scaledToFit()
+                }
                 
                 Button {
                     result = 0
                     components = [Component(op: .add, dice: [])]
                 } label: {
-                    Image(systemName: "clear").resizable().scaledToFit()
-                }.padding(12)
+                    Label("AC", systemImage: "")
+                }
             }
             GridRow {
                 Button {
                     onButtonPress(nil, .d2)
                 } label: {
                     Image("d2").resizable().scaledToFit()
-                }.padding(12)
+                }
                 
                 Button {
                     onButtonPress(nil, .d4)
                 } label: {
                     Image("d4").resizable().scaledToFit()
-                }.padding(12)
+                }
                 
                 Button {
                     onButtonPress(.add, nil)
                 } label: {
-                    Image(systemName: "plus").resizable().scaledToFit()
-                }.padding(12)
+                    Image("plus").resizable().scaledToFit()
+                }
                 
                 Button {
                     result = castCustomFunction(components)
                 } label: {
-                    Image(systemName: "equal").resizable().scaledToFit()
-                }.padding(12)
+                    Image("equals").resizable().scaledToFit()
+                }
             }
         }
     }
