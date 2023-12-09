@@ -9,11 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-
+        TabView {
             CastulatorView()
-//            QuickCastView()
-//            CustomFunctionListView()
-        
+            QuickCastView()
+        }
         .tint(.primary)
     }
 }

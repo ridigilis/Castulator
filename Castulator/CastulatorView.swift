@@ -58,34 +58,42 @@ struct CastulatorView: View {
     }
     
     var body: some View {
-        VStack {
-            ForEach(Array(components.enumerated()), id: \.self.offset) { idx, component in
-                HStack {
-                    if idx != 0 || (idx == 0 && component.op != .add) {
-                        Image(systemName: opString(component.op))
+        NavigationStack {
+                VStack {
+                    ForEach(Array(components.enumerated()), id: \.self.offset) { idx, component in
+                        HStack {
+                            if idx != 0 || (idx == 0 && component.op != .add) {
+                                Image(systemName: opString(component.op))
+                            }
+                            Spacer()
+                            ForEach(component.dice, id: \.self) { die in
+                                Image(die.rawValue).resizable().scaledToFit().frame(minHeight: 24, maxHeight: 48)
+                            }
+                        }
+                        
+                        if idx != 0 || (idx == 0 && component.op != .add) {
+                            Divider()
+                        }
                     }
+                    
+                    if result != 0 {
+                        HStack {
+                            Spacer()
+                            Text(String(Int(result)))
+                                .font(Font.custom("MedievalSharp", size: 42))
+                        }
+                    }
+                    
                     Spacer()
-                    ForEach(component.dice, id: \.self) { die in
-                        Image(die.rawValue).resizable().scaledToFit().frame(minHeight: 24, maxHeight: 48)
-                    }
+                    
+                    DicePadView(onButtonPress: changeWorkingComponents, components: $components, result: $result)
                 }
-                
-                if idx != 0 || (idx == 0 && component.op != .add) {
-                    Divider()
-                }
-            }
-            
-            if result != 0 {
-                HStack {
-                    Text(String(Int(result)))
-                }
-            }
+                .padding()
+                .background(Image("parchment"))
         }
-        .padding()
-        
-        Spacer()
-        
-        DicePadView(onButtonPress: changeWorkingComponents, components: $components, result: $result)
+        .tabItem {
+            Label("Castulator", systemImage: "scroll.fill")
+        }
     }
 }
 

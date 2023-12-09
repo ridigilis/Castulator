@@ -84,7 +84,7 @@ struct QuickCastView: View {
             }
         }
         .tabItem {
-            Label("Quick Cast", systemImage: "plus")
+            Label("Quick Cast", systemImage: "dice.fill")
         }
     }
 }
