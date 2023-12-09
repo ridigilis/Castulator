@@ -89,7 +89,7 @@ struct CastulatorView: View {
                     DicePadView(onButtonPress: changeWorkingComponents, components: $components, result: $result)
                 }
                 .padding()
-                .background(Image("parchment"))
+                .background(Image("parchment-light"))
         }
         .tabItem {
             Label("Castulator", systemImage: "scroll.fill")

@@ -50,7 +50,7 @@ struct QuickCastView: View {
                 }
             }
             .padding()
-            .background(Image("parchment"))
+            .background(Image("parchment-light"))
             .toolbar {
                 ToolbarItemGroup {
                     NavigationLink {
@@ -71,7 +71,7 @@ struct QuickCastView: View {
                         }
                         .navigationTitle("Cast History")
                         .scrollContentBackground(.hidden)
-                        .background(Image("parchment"))
+                        .background(Image("parchment-light"))
                         .toolbar {
                             Button("Clear") {
                                 results.forEach { modelContext.delete($0) }

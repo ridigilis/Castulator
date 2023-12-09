@@ -50,7 +50,7 @@ struct CustomFunctionListView: View {
             }
             .padding()
             .scrollContentBackground(.hidden)
-            .background(Image("parchment"))
+            .background(Image("parchment-light"))
         }
         .tabItem {
             Label("Custom Functions", systemImage: "fn")
