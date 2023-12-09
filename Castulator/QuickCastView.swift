@@ -71,7 +71,7 @@ struct QuickCastView: View {
                         }
                         .navigationTitle("Cast History")
                         .scrollContentBackground(.hidden)
-                        .background(Image("parchment-light"))
+                        .background(Image("parchment-light").resizable().scaledToFill().ignoresSafeArea(.all).opacity(0.6))
                         .toolbar {
                             Button("Clear") {
                                 results.forEach { modelContext.delete($0) }
