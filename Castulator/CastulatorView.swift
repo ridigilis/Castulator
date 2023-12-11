@@ -59,34 +59,40 @@ struct CastulatorView: View {
     
     var body: some View {
         NavigationStack {
-                VStack {
-                    ForEach(Array(components.enumerated()), id: \.self.offset) { idx, component in
-                        HStack {
-                            if idx != 0 || (idx == 0 && component.op != .add) {
-                                Image(systemName: opString(component.op))
+                ZStack {
+                    VStack {
+                        ForEach(Array(components.enumerated()), id: \.self.offset) { idx, component in
+                            HStack {
+                                if idx != 0 || (idx == 0 && component.op != .add) {
+                                    Image(systemName: opString(component.op))
+                                }
+                                Spacer()
+                                ForEach(component.dice, id: \.self) { die in
+                                    Image(die.rawValue).resizable().scaledToFit().frame(minHeight: 24, maxHeight: 48)
+                                }
                             }
-                            Spacer()
-                            ForEach(component.dice, id: \.self) { die in
-                                Image(die.rawValue).resizable().scaledToFit().frame(minHeight: 24, maxHeight: 48)
+                            
+                            if idx != 0 || (idx == 0 && component.op != .add) {
+                                Divider()
                             }
                         }
                         
-                        if idx != 0 || (idx == 0 && component.op != .add) {
-                            Divider()
+                        if result != 0 {
+                            HStack {
+                                Spacer()
+                                Text(String(Int(result)))
+                                    .font(Font.custom("MedievalSharp", size: 42))
+                            }
                         }
+                        
+                        Spacer()
                     }
                     
-                    if result != 0 {
-                        HStack {
-                            Spacer()
-                            Text(String(Int(result)))
-                                .font(Font.custom("MedievalSharp", size: 42))
-                        }
+                    VStack {
+                        Spacer()
+                        
+                        DicePadView(onButtonPress: changeWorkingComponents, components: $components, result: $result)
                     }
-                    
-                    Spacer()
-                    
-                    DicePadView(onButtonPress: changeWorkingComponents, components: $components, result: $result)
                 }
                 .padding()
                 .background(Image("parchment-light").resizable().scaledToFill().ignoresSafeArea(.all).opacity(0.6))
@@ -109,89 +115,92 @@ struct DicePadView: View {
                     onButtonPress(nil, .d20)
                 } label: {
                     Image("d20").resizable().scaledToFit()
-                }
+                }.padding()
                 
                 Button {
                     onButtonPress(nil, .d100)
                 } label: {
                     Image("d100").resizable().scaledToFit()
-                }
+                }.padding()
                 
                 Button {
                     onButtonPress(.divide, nil)
                 } label: {
                     Image("divide").resizable().scaledToFit()
-                }
+                }.padding()
             }
+            
             GridRow {
                 Button {
                     onButtonPress(nil, .d10)
                 } label: {
                     Image("d10").resizable().scaledToFit()
-                }
+                }.padding()
                 
                 Button {
                     onButtonPress(nil, .d12)
                 } label: {
                     Image("d12").resizable().scaledToFit()
-                }
+                }.padding()
                 
                 Button {
                     onButtonPress(.multiply, nil)
                 } label: {
                     Image("multiply").resizable().scaledToFit()
-                }
+                }.padding()
             }
+            
             GridRow {
                 Button {
                     onButtonPress(nil, .d6)
                 } label: {
                     Image("d6").resizable().scaledToFit()
-                }
+                }.padding()
                 
                 Button {
                     onButtonPress(nil, .d8)
                 } label: {
                     Image("d8").resizable().scaledToFit()
-                }
+                }.padding()
                 
                 Button {
                     onButtonPress(.subtract, nil)
                 } label: {
                     Image("minus").resizable().scaledToFit()
-                }
+                }.padding()
                 
                 Button {
                     result = 0
                     components = [Component(op: .add, dice: [])]
                 } label: {
                     Label("AC", systemImage: "")
-                }
+                }.padding()
             }
+            
             GridRow {
                 Button {
                     onButtonPress(nil, .d2)
                 } label: {
                     Image("d2").resizable().scaledToFit()
-                }
+                }.padding()
                 
                 Button {
                     onButtonPress(nil, .d4)
                 } label: {
                     Image("d4").resizable().scaledToFit()
-                }
+                }.padding()
                 
                 Button {
                     onButtonPress(.add, nil)
                 } label: {
                     Image("plus").resizable().scaledToFit()
-                }
+                }.padding()
                 
                 Button {
                     result = castCustomFunction(components)
                 } label: {
                     Image("equals").resizable().scaledToFit()
-                }
+                }.padding()
             }
         }
     }
