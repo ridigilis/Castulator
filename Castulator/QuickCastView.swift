@@ -15,40 +15,27 @@ struct QuickCastView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                Spacer()
-                
-                if result != nil {
-                    CastResultView(result: result!)
-                } else {
-                    ZStack {
-                        Image("d20").resizable().scaledToFit().opacity(0.15)
-                        Text("Castulator")
-                            .opacity(0.6)
-                            .font(
-                                Font.custom("MedievalSharp", size: 42)
-                            )
-                    }
+            Grid {
+                GridRow {
+                    DiceButton(die: .d20, results: results)
+                    DiceButton(die: .d100, results: results)
                 }
                 
-                Spacer()
-                
-                Grid {
-                    GridRow {
-                        DiceButton(die: .d2, result: $result, results: results)
-                        DiceButton(die: .d4, result: $result, results: results)
-                        DiceButton(die: .d6, result: $result, results: results)
-                        DiceButton(die: .d8, result: $result, results: results)
-                    }
-                    
-                    GridRow {
-                        DiceButton(die: .d10, result: $result, results: results)
-                        DiceButton(die: .d12, result: $result, results: results)
-                        DiceButton(die: .d20, result: $result, results: results)
-                        DiceButton(die: .d100, result: $result, results: results)
-                    }
+                GridRow {
+                    DiceButton(die: .d10, results: results)
+                    DiceButton(die: .d12, results: results)
                 }
-            }
+                
+                GridRow {
+                    DiceButton(die: .d6, results: results)
+                    DiceButton(die: .d8, results: results)
+                }
+                
+                GridRow {
+                    DiceButton(die: .d2, results: results)
+                    DiceButton(die: .d4, results: results)
+                }
+            }            
             .padding()
             .background(Image("parchment-light").resizable().scaledToFill().ignoresSafeArea(.all).opacity(0.6))
             .toolbar {

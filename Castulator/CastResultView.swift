@@ -15,15 +15,11 @@ struct CastResultView: View {
             Image(result.die.rawValue)
                 .resizable()
                 .scaledToFit()
-                .frame(maxWidth: 256, maxHeight: 256)
-                .opacity(0.5)
+                .opacity(0.30)
             Text(String(result.value))
                 .font(
                     Font.custom("MedievalSharp", size: 48)
                 )
-                .foregroundStyle(Color.white)
-                .background(Circle().frame(width: 96, height: 96))
-                .opacity(0.6)
-        }
+        }.padding()
     }
 }

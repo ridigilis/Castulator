@@ -11,7 +11,7 @@ import SwiftData
 struct DiceButton: View {
     @Environment(\.modelContext) var modelContext
     var die: Dice
-    @Binding var result: CastResult?
+    @State var result: CastResult? = nil
     var results: [CastResult]
     
     var body: some View {
@@ -22,7 +22,15 @@ struct DiceButton: View {
                 modelContext.delete(results[0])
             }
         } label: {
-            Image(die.rawValue).resizable().scaledToFit()
-        }
+            ZStack {
+                Image(die.rawValue).resizable().scaledToFit().opacity(0.4)
+                if result != nil {
+                    Text(String(result!.value))
+                        .font(
+                            Font.custom("MedievalSharp", size: 48)
+                        )
+                }
+            }
+        }.padding()
     }
 }
