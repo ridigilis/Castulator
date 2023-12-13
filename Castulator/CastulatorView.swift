@@ -92,7 +92,12 @@ struct CastulatorView: View {
                     VStack {
                         Spacer()
                         
-                        DicePadView(onButtonPress: changeWorkingComponents, components: $components, result: $result)
+                        DicePadView(
+                            onButtonPress: changeWorkingComponents,
+                            components: $components,
+                            result: $result,
+                            prevResult: $prevResult
+                        )
                     }
                 }
                 .padding()
@@ -108,6 +113,7 @@ struct DicePadView: View {
     var onButtonPress: (Operation?, Dice?) -> Void
     @Binding var components: [Component]
     @Binding var result: Double?
+    @Binding var prevResult: Double?
     
     var body: some View {
         Grid {
@@ -172,6 +178,7 @@ struct DicePadView: View {
                 
                 Button {
                     result = nil
+                    prevResult = nil
                     components = [Component(op: .add, dice: [])]
                 } label: {
                     Label("AC", systemImage: "")
