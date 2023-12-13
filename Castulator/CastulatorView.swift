@@ -30,6 +30,14 @@ struct CastulatorView: View {
     }
     
     private func handleDiceButtonPress(_ die: Dice) {
+        if result != nil {
+            result = nil
+            let op = components.last?.op ?? Operation.add
+            components.removeLast()
+            components.append(Component(op: op, dice: [die]))
+            return
+        }
+        
         components = components.map { comp in
             if comp == components.last {
                 var newDice = comp.dice
@@ -72,20 +80,28 @@ struct CastulatorView: View {
     private func handleEqualsButtonPress() {
         let currentDice = components.last?.dice ?? []
         
-        if currentDice.isEmpty { return }
+        if components.count == 1 && currentDice.isEmpty { return }
         
-        let lhsComponent = components[components.count - 2]
         let rhsComponent = components.last ?? Component(op: .add, dice: [])
         
-        if components.count == 1 {
-            result = rhsComponent.dice.reduce(0, {$0 + Double(castDie($1))})
+        if components.count == 1 && !currentDice.isEmpty {
+            if result == nil {
+                result = rhsComponent.dice.reduce(0, {$0 + Double(castDie($1))})
+                return
+            } else {
+                prevResult = rhsComponent.dice.reduce(0, {$0 + Double(castDie($1))})
+                components.append(components.last!)
+            }
         }
+            
+            let lhsComponent = components[components.count - 2]
+            
+            result = castulate(
+                lhsTerm: getLhsTerm(prevResult: prevResult, lhsComponent: lhsComponent),
+                op: rhsComponent.op,
+                rhsTerm: rhsComponent.dice.reduce(0, {$0 + Double(castDie($1))})
+            )
         
-        result = castulate(
-            lhsTerm: getLhsTerm(prevResult: prevResult, lhsComponent: lhsComponent),
-            op: rhsComponent.op,
-            rhsTerm: rhsComponent.dice.reduce(0, {$0 + Double(castDie($1))})
-        )
     }
     
     private func handleClearButtonPress() {
