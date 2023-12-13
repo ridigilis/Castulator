@@ -9,74 +9,130 @@ import SwiftUI
 
 struct CastulatorView: View {
     @State private var components: [Component] = [Component(op: .add, dice: [])]
-    @State private var result: Double?
     @State private var prevResult: Double?
+    @State private var result: Double?
     
-    func opString(_ op: Operation) -> String {
+    private func castulate(lhsTerm: Double, op: Operation, rhsTerm: Double) -> Double {
         switch op {
-        case .add: return "plus"
-        case .subtract: return "minus"
-        case .multiply: return "multiply"
-        case .divide: return "divide"
+        case .add: floor(lhsTerm + rhsTerm)
+        case .subtract: floor(lhsTerm - rhsTerm)
+        case .multiply: floor(lhsTerm * rhsTerm)
+        case .divide: floor(lhsTerm / (rhsTerm == 0 ? 1 : rhsTerm))
         }
     }
     
-    func changeWorkingComponents(op: Operation?, die: Dice?) {
-        if op != nil {
-            switch op {
-            case .add: components.append(Component(op: .add, dice: []))
-            case .subtract: components.append(Component(op: .subtract, dice: []))
-            case .multiply: components.append(Component(op: .multiply, dice: []))
-            case .divide: components.append(Component(op: .divide, dice: []))
-            case .none: return // should never be reached
-            }
+    private func getLhsTerm(prevResult: Double?, lhsComponent: Component) -> Double {
+        if prevResult != nil {
+            return prevResult!
         }
         
-        func appendDie(_ die: Dice) {
-            components = components.map { comp in
-                if comp == components.last {
-                    var newDice = comp.dice
-                    newDice.append(die)
-                    return Component(op: comp.op, dice: newDice)
-                }
-                return comp
+        return lhsComponent.dice.reduce(0, {$0 + Double(castDie($1))})
+    }
+    
+    private func handleDiceButtonPress(_ die: Dice) {
+        components = components.map { comp in
+            if comp == components.last {
+                var newDice = comp.dice
+                newDice.append(die)
+                return Component(op: comp.op, dice: newDice)
             }
+            return comp
+        }
+    }
+    
+    private func handleOpButtonPress(_ op: Operation) {
+        let currentOp = components.last?.op ?? .add
+        let currentDice = components.last?.dice ?? []
+        
+        // repeat press
+        if op == currentOp && currentDice.isEmpty { return }
+        
+        if components.count == 1 {
+            components.append(Component(op: op, dice: []))
+            return
         }
         
-        if die != nil {
-            switch die {
-            case .d2: appendDie(.d2)
-            case .d4: appendDie(.d4)
-            case .d6: appendDie(.d6)
-            case .d8: appendDie(.d8)
-            case .d10: appendDie(.d10)
-            case .d12: appendDie(.d12)
-            case .d20: appendDie(.d20)
-            case .d100: appendDie(.d100)
-            case .none: return // should never be reached
-            }
+        let lhsComponent = components[components.count - 2]
+        let rhsComponent = components.last ?? Component(op: .add, dice: [])
+        
+        if result != nil {
+            prevResult = result
+            components.append(Component(op: op, dice: []))
+            result = nil
+        } else {
+            prevResult = castulate(
+                lhsTerm: getLhsTerm(prevResult: prevResult, lhsComponent: lhsComponent),
+                op: rhsComponent.op,
+                rhsTerm: rhsComponent.dice.reduce(0, {$0 + Double(castDie($1))})
+            )
+            components.append(Component(op: op, dice: []))
         }
+    }
+    
+    private func handleEqualsButtonPress() {
+        let currentDice = components.last?.dice ?? []
+        
+        if currentDice.isEmpty { return }
+        
+        let lhsComponent = components[components.count - 2]
+        let rhsComponent = components.last ?? Component(op: .add, dice: [])
+        
+        if components.count == 1 {
+            result = rhsComponent.dice.reduce(0, {$0 + Double(castDie($1))})
+        }
+        
+        result = castulate(
+            lhsTerm: getLhsTerm(prevResult: prevResult, lhsComponent: lhsComponent),
+            op: rhsComponent.op,
+            rhsTerm: rhsComponent.dice.reduce(0, {$0 + Double(castDie($1))})
+        )
+    }
+    
+    private func handleClearButtonPress() {
+        result = nil
+        prevResult = nil
+        components = [Component(op: .add, dice: [])]
     }
     
     var body: some View {
         NavigationStack {
                 ZStack {
                     VStack {
-                        ForEach(Array(components.enumerated()), id: \.self.offset) { idx, component in
-                            HStack {
-                                if idx != 0 || (idx == 0 && component.op != .add) {
-                                    Image(systemName: opString(component.op))
-                                }
-                                Spacer()
-                                ForEach(component.dice, id: \.self) { die in
-                                    Image(die.rawValue).resizable().scaledToFit().frame(minHeight: 24, maxHeight: 48)
-                                }
-                            }
+                        HStack {
+                            Spacer()
                             
-                            if idx != 0 || (idx == 0 && component.op != .add) {
+                            if prevResult != nil {
+                                Text(String(Int(prevResult!)))
+                                    .font(Font.custom("MedievalSharp", size: 36)).frame(minHeight:24, maxHeight: 64)
+                            } else {
+                                if components.count == 1 {
+                                    ForEach(components[0].dice, id: \.self) { die in
+                                        Image(die.rawValue).resizable().scaledToFit().frame(minHeight: 24, maxHeight: 64)
+                                    }
+                                } else {
+                                    ForEach(components[components.count - 2].dice, id: \.self) { die in
+                                        Image(die.rawValue).resizable().scaledToFit().frame(minHeight: 24, maxHeight: 64)
+                                    }
+                                }
+                                
+                            }
+                        }
+                        
+                        VStack {
+                            if components.count > 1 {
+                                HStack {
+                                    Image(systemName: components.last!.op.toString)
+                                    Spacer()
+                                    ForEach(components.last!.dice, id: \.self) { die in
+                                        Image(die.rawValue).resizable().scaledToFit().frame(minHeight: 24, maxHeight: 64)
+                                    }
+                                    
+                                }.frame(minHeight: 24, maxHeight: 64)
                                 Divider()
                             }
                         }
+                        
+                        
                         
                         if result != nil {
                             HStack {
@@ -93,10 +149,10 @@ struct CastulatorView: View {
                         Spacer()
                         
                         DicePadView(
-                            onButtonPress: changeWorkingComponents,
-                            components: $components,
-                            result: $result,
-                            prevResult: $prevResult
+                            onDiceButtonPress: handleDiceButtonPress,
+                            onOpButtonPress: handleOpButtonPress,
+                            onEqualsButtonPress: handleEqualsButtonPress,
+                            onClearButtonPress: handleClearButtonPress
                         )
                     }
                 }
@@ -110,76 +166,74 @@ struct CastulatorView: View {
 }
 
 struct DicePadView: View {
-    var onButtonPress: (Operation?, Dice?) -> Void
-    @Binding var components: [Component]
-    @Binding var result: Double?
-    @Binding var prevResult: Double?
+    var onDiceButtonPress: (Dice) -> Void
+    var onOpButtonPress: (Operation) -> Void
+    var onEqualsButtonPress: () -> Void
+    var onClearButtonPress: () -> Void
     
     var body: some View {
         Grid {
             GridRow {
                 Button {
-                    onButtonPress(nil, .d20)
+                    onDiceButtonPress(.d20)
                 } label: {
                     Image("d20").resizable().scaledToFit()
                 }.padding()
                 
                 Button {
-                    onButtonPress(nil, .d100)
+                    onDiceButtonPress(.d100)
                 } label: {
                     Image("d100").resizable().scaledToFit()
                 }.padding()
                 
                 Button {
-                    onButtonPress(.divide, nil)
+                    onOpButtonPress(.divide)
                 } label: {
-                    Image("divide").resizable().scaledToFit()
+                    Image(Operation.divide.toString).resizable().scaledToFit()
                 }.padding()
             }
             
             GridRow {
                 Button {
-                    onButtonPress(nil, .d10)
+                    onDiceButtonPress(.d10)
                 } label: {
                     Image("d10").resizable().scaledToFit()
                 }.padding()
                 
                 Button {
-                    onButtonPress(nil, .d12)
+                    onDiceButtonPress(.d12)
                 } label: {
                     Image("d12").resizable().scaledToFit()
                 }.padding()
                 
                 Button {
-                    onButtonPress(.multiply, nil)
+                    onOpButtonPress(.multiply)
                 } label: {
-                    Image("multiply").resizable().scaledToFit()
+                    Image(Operation.multiply.toString).resizable().scaledToFit()
                 }.padding()
             }
             
             GridRow {
                 Button {
-                    onButtonPress(nil, .d6)
+                    onDiceButtonPress(.d6)
                 } label: {
                     Image("d6").resizable().scaledToFit()
                 }.padding()
                 
                 Button {
-                    onButtonPress(nil, .d8)
+                    onDiceButtonPress(.d8)
                 } label: {
                     Image("d8").resizable().scaledToFit()
                 }.padding()
                 
                 Button {
-                    onButtonPress(.subtract, nil)
+                    onOpButtonPress(.subtract)
                 } label: {
-                    Image("minus").resizable().scaledToFit()
+                    Image(Operation.subtract.toString).resizable().scaledToFit()
                 }.padding()
                 
                 Button {
-                    result = nil
-                    prevResult = nil
-                    components = [Component(op: .add, dice: [])]
+                    onClearButtonPress()
                 } label: {
                     Label("AC", systemImage: "")
                 }.padding()
@@ -187,25 +241,25 @@ struct DicePadView: View {
             
             GridRow {
                 Button {
-                    onButtonPress(nil, .d2)
+                    onDiceButtonPress(.d2)
                 } label: {
                     Image("d2").resizable().scaledToFit()
                 }.padding()
                 
                 Button {
-                    onButtonPress(nil, .d4)
+                    onDiceButtonPress(.d4)
                 } label: {
                     Image("d4").resizable().scaledToFit()
                 }.padding()
                 
                 Button {
-                    onButtonPress(.add, nil)
+                    onOpButtonPress(.add)
                 } label: {
-                    Image("plus").resizable().scaledToFit()
+                    Image(Operation.add.toString).resizable().scaledToFit()
                 }.padding()
                 
                 Button {
-                    result = castCustomFunction(components)
+                    onEqualsButtonPress()
                 } label: {
                     Image("equals").resizable().scaledToFit()
                 }.padding()
