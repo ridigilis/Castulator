@@ -9,7 +9,8 @@ import SwiftUI
 
 struct CastulatorView: View {
     @State private var components: [Component] = [Component(op: .add, dice: [])]
-    @State private var result: Double = 0
+    @State private var result: Double?
+    @State private var prevResult: Double?
     
     func opString(_ op: Operation) -> String {
         switch op {
@@ -77,10 +78,10 @@ struct CastulatorView: View {
                             }
                         }
                         
-                        if result != 0 {
+                        if result != nil {
                             HStack {
                                 Spacer()
-                                Text(String(Int(result)))
+                                Text(String(Int(result!)))
                                     .font(Font.custom("MedievalSharp", size: 42))
                             }
                         }
@@ -106,7 +107,7 @@ struct CastulatorView: View {
 struct DicePadView: View {
     var onButtonPress: (Operation?, Dice?) -> Void
     @Binding var components: [Component]
-    @Binding var result: Double
+    @Binding var result: Double?
     
     var body: some View {
         Grid {
@@ -170,7 +171,7 @@ struct DicePadView: View {
                 }.padding()
                 
                 Button {
-                    result = 0
+                    result = nil
                     components = [Component(op: .add, dice: [])]
                 } label: {
                     Label("AC", systemImage: "")
