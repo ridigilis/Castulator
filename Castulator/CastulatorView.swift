@@ -207,6 +207,12 @@ struct DicePadView: View {
                 } label: {
                     Image(Operation.divide.toString).resizable().scaledToFit()
                 }.padding()
+                
+                Button {
+                    onClearButtonPress()
+                } label: {
+                    Text("Clear").font(Font.custom("MedievalSharp", size: 20))
+                }.padding()
             }
             
             GridRow {
@@ -226,6 +232,12 @@ struct DicePadView: View {
                     onOpButtonPress(.multiply)
                 } label: {
                     Image(Operation.multiply.toString).resizable().scaledToFit()
+                }.padding()
+                
+                Button {
+                    
+                } label: {
+                    Text("Reroll All").font(Font.custom("MedievalSharp", size: 20))
                 }.padding()
             }
             
@@ -249,9 +261,9 @@ struct DicePadView: View {
                 }.padding()
                 
                 Button {
-                    onClearButtonPress()
+                    
                 } label: {
-                    Text("Clear").font(Font.custom("MedievalSharp", size: 20))
+                    Text("Reroll").font(Font.custom("MedievalSharp", size: 20))
                 }.padding()
             }
             
