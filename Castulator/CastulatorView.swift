@@ -254,7 +254,7 @@ struct DicePadView: View {
                 Button {
                     
                 } label: {
-                    Text("Reroll All").font(Font.custom("MedievalSharp", size: 20))
+                    Text("Reroll All").font(Font.custom("MedievalSharp", size: 16))
                 }.padding()
             }
             
@@ -280,7 +280,7 @@ struct DicePadView: View {
                 Button {
                     
                 } label: {
-                    Text("Reroll").font(Font.custom("MedievalSharp", size: 20))
+                    Text("Reroll Last").font(Font.custom("MedievalSharp", size: 16))
                 }.padding()
             }
             
