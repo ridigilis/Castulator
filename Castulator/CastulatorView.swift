@@ -82,11 +82,6 @@ struct CastulatorView: View {
         
         if components.count == 1 && currentDice.isEmpty { return }
         
-        if components.count == 1 && !currentDice.isEmpty {
-            result = castulate(lhsTerm: 0, op: .add, rhsTerm: currentDice.reduce(0, {$0 + Double(castDie($1))}))
-            return
-        }
-        
         let rhsComponent = components.last ?? Component(op: .add, dice: [])
         
         if components.count == 1 && !currentDice.isEmpty {
@@ -94,18 +89,22 @@ struct CastulatorView: View {
                 result = rhsComponent.dice.reduce(0, {$0 + Double(castDie($1))})
                 return
             } else {
-                prevResult = rhsComponent.dice.reduce(0, {$0 + Double(castDie($1))})
+                prevResult = result
                 components.append(components.last!)
             }
         }
+        
+        if result != nil {
+            prevResult = result
+        }
             
-            let lhsComponent = components[components.count - 2]
-            
-            result = castulate(
-                lhsTerm: getLhsTerm(prevResult: prevResult, lhsComponent: lhsComponent),
-                op: rhsComponent.op,
-                rhsTerm: rhsComponent.dice.reduce(0, {$0 + Double(castDie($1))})
-            )
+        let lhsComponent = components[components.count - 2]
+        
+        result = castulate(
+            lhsTerm: getLhsTerm(prevResult: prevResult, lhsComponent: lhsComponent),
+            op: rhsComponent.op,
+            rhsTerm: rhsComponent.dice.reduce(0, {$0 + Double(castDie($1))})
+        )
         
     }
     
@@ -116,7 +115,7 @@ struct CastulatorView: View {
     }
     
     private func handleRerollButtonPress() {
-
+        
     }
     
     private func handleRerollAllButtonPress() {
