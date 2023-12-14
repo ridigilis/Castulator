@@ -55,7 +55,14 @@ struct CastulatorView: View {
         // repeat press
         if op == currentOp && currentDice.isEmpty { return }
         
-        if components.count == 1 {
+        // switch op
+        if op != currentOp && currentDice.isEmpty {
+            components.removeLast()
+            components.append(Component(op: op, dice: []))
+            return
+        }
+        
+        if components.count == 1 && !currentDice.isEmpty {
             components.append(Component(op: op, dice: []))
             return
         }
@@ -105,7 +112,6 @@ struct CastulatorView: View {
             op: rhsComponent.op,
             rhsTerm: rhsComponent.dice.reduce(0, {$0 + Double(castDie($1))})
         )
-        
     }
     
     private func handleClearButtonPress() {
