@@ -251,7 +251,7 @@ struct DicePadView: View {
                 Button {
                     onClearButtonPress()
                 } label: {
-                    Label("AC", systemImage: "")
+                    Text("Clear").font(Font.custom("MedievalSharp", size: 20))
                 }.padding()
             }
             
