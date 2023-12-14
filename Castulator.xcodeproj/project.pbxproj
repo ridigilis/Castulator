@@ -21,7 +21,18 @@
 		59D04A4D2B191E11005631AD /* CustomFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D04A4C2B191E11005631AD /* CustomFunction.swift */; };
 		59E573FE2B23A716008ADF2A /* QuickCastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E573FD2B23A716008ADF2A /* QuickCastView.swift */; };
 		59E574002B23AC54008ADF2A /* CastulatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E573FF2B23AC54008ADF2A /* CastulatorView.swift */; };
+		59E5740A2B2B5AFF008ADF2A /* CastulatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E574092B2B5AFF008ADF2A /* CastulatorTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		59E5740B2B2B5AFF008ADF2A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 597DE8F82B16621F006A85BC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 597DE8FF2B16621F006A85BC;
+			remoteInfo = Castulator;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		5966DCC82B1A4C2800FE4602 /* EditCustomFunctionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCustomFunctionView.swift; sourceTree = "<group>"; };
@@ -40,10 +51,19 @@
 		59D04A4C2B191E11005631AD /* CustomFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFunction.swift; sourceTree = "<group>"; };
 		59E573FD2B23A716008ADF2A /* QuickCastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickCastView.swift; sourceTree = "<group>"; };
 		59E573FF2B23AC54008ADF2A /* CastulatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastulatorView.swift; sourceTree = "<group>"; };
+		59E574072B2B5AFF008ADF2A /* CastulatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CastulatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		59E574092B2B5AFF008ADF2A /* CastulatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastulatorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		597DE8FD2B16621F006A85BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		59E574042B2B5AFF008ADF2A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -57,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				597DE9022B16621F006A85BC /* Castulator */,
+				59E574082B2B5AFF008ADF2A /* CastulatorTests */,
 				597DE9012B16621F006A85BC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -65,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				597DE9002B16621F006A85BC /* Castulator.app */,
+				59E574072B2B5AFF008ADF2A /* CastulatorTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,6 +121,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		59E574082B2B5AFF008ADF2A /* CastulatorTests */ = {
+			isa = PBXGroup;
+			children = (
+				59E574092B2B5AFF008ADF2A /* CastulatorTests.swift */,
+			);
+			path = CastulatorTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -119,6 +149,24 @@
 			productReference = 597DE9002B16621F006A85BC /* Castulator.app */;
 			productType = "com.apple.product-type.application";
 		};
+		59E574062B2B5AFF008ADF2A /* CastulatorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 59E5740D2B2B5AFF008ADF2A /* Build configuration list for PBXNativeTarget "CastulatorTests" */;
+			buildPhases = (
+				59E574032B2B5AFF008ADF2A /* Sources */,
+				59E574042B2B5AFF008ADF2A /* Frameworks */,
+				59E574052B2B5AFF008ADF2A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				59E5740C2B2B5AFF008ADF2A /* PBXTargetDependency */,
+			);
+			name = CastulatorTests;
+			productName = CastulatorTests;
+			productReference = 59E574072B2B5AFF008ADF2A /* CastulatorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -131,6 +179,10 @@
 				TargetAttributes = {
 					597DE8FF2B16621F006A85BC = {
 						CreatedOnToolsVersion = 15.0.1;
+					};
+					59E574062B2B5AFF008ADF2A = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = 597DE8FF2B16621F006A85BC;
 					};
 				};
 			};
@@ -148,6 +200,7 @@
 			projectRoot = "";
 			targets = (
 				597DE8FF2B16621F006A85BC /* Castulator */,
+				59E574062B2B5AFF008ADF2A /* CastulatorTests */,
 			);
 		};
 /* End PBXProject section */
@@ -160,6 +213,13 @@
 				597DE9132B16CFDC006A85BC /* MedievalSharp-Regular.ttf in Resources */,
 				597DE90B2B166221006A85BC /* Preview Assets.xcassets in Resources */,
 				597DE9082B166221006A85BC /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		59E574052B2B5AFF008ADF2A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,7 +244,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		59E574032B2B5AFF008ADF2A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59E5740A2B2B5AFF008ADF2A /* CastulatorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		59E5740C2B2B5AFF008ADF2A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 597DE8FF2B16621F006A85BC /* Castulator */;
+			targetProxy = 59E5740B2B2B5AFF008ADF2A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		597DE90C2B166221006A85BC /* Debug */ = {
@@ -366,6 +442,42 @@
 			};
 			name = Release;
 		};
+		59E5740E2B2B5AFF008ADF2A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K5U7BRQ5VA;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.ridigilis.CastulatorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Castulator.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Castulator";
+			};
+			name = Debug;
+		};
+		59E5740F2B2B5AFF008ADF2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K5U7BRQ5VA;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.ridigilis.CastulatorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Castulator.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Castulator";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -383,6 +495,15 @@
 			buildConfigurations = (
 				597DE90F2B166221006A85BC /* Debug */,
 				597DE9102B166221006A85BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		59E5740D2B2B5AFF008ADF2A /* Build configuration list for PBXNativeTarget "CastulatorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				59E5740E2B2B5AFF008ADF2A /* Debug */,
+				59E5740F2B2B5AFF008ADF2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

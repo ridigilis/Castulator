@@ -82,6 +82,11 @@ struct CastulatorView: View {
         
         if components.count == 1 && currentDice.isEmpty { return }
         
+        if components.count == 1 && !currentDice.isEmpty {
+            result = castulate(lhsTerm: 0, op: .add, rhsTerm: currentDice.reduce(0, {$0 + Double(castDie($1))}))
+            return
+        }
+        
         let rhsComponent = components.last ?? Component(op: .add, dice: [])
         
         if components.count == 1 && !currentDice.isEmpty {
@@ -108,6 +113,14 @@ struct CastulatorView: View {
         result = nil
         prevResult = nil
         components = [Component(op: .add, dice: [])]
+    }
+    
+    private func handleRerollButtonPress() {
+
+    }
+    
+    private func handleRerollAllButtonPress() {
+        
     }
     
     var body: some View {
@@ -168,7 +181,9 @@ struct CastulatorView: View {
                             onDiceButtonPress: handleDiceButtonPress,
                             onOpButtonPress: handleOpButtonPress,
                             onEqualsButtonPress: handleEqualsButtonPress,
-                            onClearButtonPress: handleClearButtonPress
+                            onClearButtonPress: handleClearButtonPress,
+                            onRerollButtonPress: handleRerollButtonPress,
+                            onRerollAllButtonPress: handleRerollAllButtonPress
                         )
                     }
                 }
@@ -186,6 +201,8 @@ struct DicePadView: View {
     var onOpButtonPress: (Operation) -> Void
     var onEqualsButtonPress: () -> Void
     var onClearButtonPress: () -> Void
+    var onRerollButtonPress: () -> Void
+    var onRerollAllButtonPress: () -> Void
     
     var body: some View {
         Grid {
