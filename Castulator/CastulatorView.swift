@@ -140,7 +140,21 @@ struct CastulatorView: View {
     }
     
     private func handleRerollAllButtonPress() {
+        let allButLast = components.filter { $0 == components.last }
+        let last = components.last
         
+        let rerollAllButLast = allButLast.reduce(
+            0,
+            { acc, cur in
+                return castulate(lhsTerm: acc, op: cur.op, rhsTerm: cur.dice.reduce(0, {$0 + Double(castDie($1))}))
+            }
+        )
+        
+        prevResult = rerollAllButLast
+        
+        if last != nil && !last!.dice.isEmpty && result != nil {
+            result = castulate(lhsTerm: rerollAllButLast, op: last!.op, rhsTerm: last!.dice.reduce(0, {$0 + Double(castDie($1))}))
+        }
     }
     
     var body: some View {
@@ -272,7 +286,7 @@ struct DicePadView: View {
                 }.padding()
                 
                 Button {
-                    
+                    onRerollAllButtonPress()
                 } label: {
                     Text("Reroll All").font(Font.custom("MedievalSharp", size: 16))
                 }.padding()
