@@ -43,8 +43,10 @@ struct QuickCastView: View {
                     NavigationLink {
                         VStack {
                             if results.isEmpty {
+                                Spacer()
                                 Text("No Cast Result History to show.").font(.subheadline).opacity(0.6)
                                 Text("Try casting some dice!").font(.subheadline).opacity(0.6)
+                                Spacer()
                             } else {
                                 List(results.sorted(by: {$0.castDate > $1.castDate})) { res in
                                     HStack {
