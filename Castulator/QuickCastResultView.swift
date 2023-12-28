@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct CastResultView: View {
-    let result: CastResult
+struct QuickCastResultView: View {
+    let result: QuickCastResult
     
     var body: some View {
         ZStack {

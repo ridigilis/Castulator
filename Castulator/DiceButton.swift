@@ -11,12 +11,12 @@ import SwiftData
 struct DiceButton: View {
     @Environment(\.modelContext) var modelContext
     var die: Dice
-    @State var result: CastResult? = nil
-    var results: [CastResult]
+    @State var result: QuickCastResult? = nil
+    var results: [QuickCastResult]
     
     var body: some View {
         Button {
-            result = CastResult(die)
+            result = QuickCastResult(die)
             modelContext.insert(result!)
             if results.count >= 100 {
                 modelContext.delete(results[0])

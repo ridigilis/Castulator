@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class CastResult {
+class QuickCastResult {
     let value: UInt
     let die: Dice
     let castDate: Date

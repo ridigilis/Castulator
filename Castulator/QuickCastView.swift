@@ -10,8 +10,8 @@ import SwiftData
 
 struct QuickCastView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var results: [CastResult]
-    @State private var result: CastResult?
+    @Query private var results: [QuickCastResult]
+    @State private var result: QuickCastResult?
     
     var body: some View {
         NavigationStack {

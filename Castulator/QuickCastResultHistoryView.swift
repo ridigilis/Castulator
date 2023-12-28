@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct CastResultHistoryView: View {
-    let result: CastResult
+struct QuickCastResultHistoryView: View {
+    let result: QuickCastResult
     
     let dateFormatter = RelativeDateTimeFormatter()
     

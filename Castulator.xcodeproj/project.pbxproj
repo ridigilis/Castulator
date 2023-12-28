@@ -12,10 +12,10 @@
 		597DE9082B166221006A85BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 597DE9072B166221006A85BC /* Assets.xcassets */; };
 		597DE90B2B166221006A85BC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 597DE90A2B166221006A85BC /* Preview Assets.xcassets */; };
 		597DE9132B16CFDC006A85BC /* MedievalSharp-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597DE9112B16CD6A006A85BC /* MedievalSharp-Regular.ttf */; };
-		598EA1722B1788DC00E6A93B /* CastResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598EA1712B1788DC00E6A93B /* CastResult.swift */; };
-		598EA1762B1789B700E6A93B /* CastResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598EA1752B1789B700E6A93B /* CastResultView.swift */; };
+		598EA1722B1788DC00E6A93B /* QuickCastResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598EA1712B1788DC00E6A93B /* QuickCastResult.swift */; };
+		598EA1762B1789B700E6A93B /* QuickCastResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598EA1752B1789B700E6A93B /* QuickCastResultView.swift */; };
 		598EA1782B178BB100E6A93B /* DiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598EA1772B178BB100E6A93B /* DiceButton.swift */; };
-		59D04A4B2B182A34005631AD /* CastResultHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D04A4A2B182A34005631AD /* CastResultHistoryView.swift */; };
+		59D04A4B2B182A34005631AD /* QuickCastResultHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D04A4A2B182A34005631AD /* QuickCastResultHistoryView.swift */; };
 		59E573FE2B23A716008ADF2A /* QuickCastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E573FD2B23A716008ADF2A /* QuickCastView.swift */; };
 		59E574002B23AC54008ADF2A /* CastulatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E573FF2B23AC54008ADF2A /* CastulatorView.swift */; };
 		59E5740A2B2B5AFF008ADF2A /* CastulatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E574092B2B5AFF008ADF2A /* CastulatorTests.swift */; };
@@ -39,10 +39,10 @@
 		597DE90A2B166221006A85BC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		597DE9112B16CD6A006A85BC /* MedievalSharp-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MedievalSharp-Regular.ttf"; sourceTree = "<group>"; };
 		597DE9122B16CF67006A85BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		598EA1712B1788DC00E6A93B /* CastResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastResult.swift; sourceTree = "<group>"; };
-		598EA1752B1789B700E6A93B /* CastResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastResultView.swift; sourceTree = "<group>"; };
+		598EA1712B1788DC00E6A93B /* QuickCastResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickCastResult.swift; sourceTree = "<group>"; };
+		598EA1752B1789B700E6A93B /* QuickCastResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickCastResultView.swift; sourceTree = "<group>"; };
 		598EA1772B178BB100E6A93B /* DiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceButton.swift; sourceTree = "<group>"; };
-		59D04A4A2B182A34005631AD /* CastResultHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastResultHistoryView.swift; sourceTree = "<group>"; };
+		59D04A4A2B182A34005631AD /* QuickCastResultHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickCastResultHistoryView.swift; sourceTree = "<group>"; };
 		59E573FD2B23A716008ADF2A /* QuickCastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickCastView.swift; sourceTree = "<group>"; };
 		59E573FF2B23AC54008ADF2A /* CastulatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastulatorView.swift; sourceTree = "<group>"; };
 		59E574072B2B5AFF008ADF2A /* CastulatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CastulatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,9 +94,9 @@
 				597DE9052B16621F006A85BC /* ContentView.swift */,
 				597DE9072B166221006A85BC /* Assets.xcassets */,
 				597DE9092B166221006A85BC /* Preview Content */,
-				598EA1712B1788DC00E6A93B /* CastResult.swift */,
-				598EA1752B1789B700E6A93B /* CastResultView.swift */,
-				59D04A4A2B182A34005631AD /* CastResultHistoryView.swift */,
+				598EA1712B1788DC00E6A93B /* QuickCastResult.swift */,
+				598EA1752B1789B700E6A93B /* QuickCastResultView.swift */,
+				59D04A4A2B182A34005631AD /* QuickCastResultHistoryView.swift */,
 				598EA1772B178BB100E6A93B /* DiceButton.swift */,
 				59E573FD2B23A716008ADF2A /* QuickCastView.swift */,
 				59E573FF2B23AC54008ADF2A /* CastulatorView.swift */,
@@ -221,13 +221,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				598EA1762B1789B700E6A93B /* CastResultView.swift in Sources */,
+				598EA1762B1789B700E6A93B /* QuickCastResultView.swift in Sources */,
 				59E574002B23AC54008ADF2A /* CastulatorView.swift in Sources */,
 				598EA1782B178BB100E6A93B /* DiceButton.swift in Sources */,
 				597DE9062B16621F006A85BC /* ContentView.swift in Sources */,
-				598EA1722B1788DC00E6A93B /* CastResult.swift in Sources */,
+				598EA1722B1788DC00E6A93B /* QuickCastResult.swift in Sources */,
 				597DE9042B16621F006A85BC /* CastulatorApp.swift in Sources */,
-				59D04A4B2B182A34005631AD /* CastResultHistoryView.swift in Sources */,
+				59D04A4B2B182A34005631AD /* QuickCastResultHistoryView.swift in Sources */,
 				59E573FE2B23A716008ADF2A /* QuickCastView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,6 +14,6 @@ struct CastulatorApp: App {
         WindowGroup {
             ContentView().preferredColorScheme(.light)
         }
-        .modelContainer(for: CastResult.self)
+        .modelContainer(for: QuickCastResult.self)
     }
 }
