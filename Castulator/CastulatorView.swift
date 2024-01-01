@@ -62,31 +62,6 @@ struct CastulatorView: View {
         )
         
         running = RunningCastulations(value: running.value.map { $0 == running.rhs ? castulation : $0 } + [Castulation(operation: op)])
-        
-        
-//        if components.count == 1 && !currentDice.isEmpty {
-//            components.append((Component(op: op, dice: []), nil))
-//            return
-//        }
-        
-//        let lhs = components[components.count - 2]
-//        let rhs = components.last ?? (Component(op: .add, dice: []), nil)
-//        
-//        let lhsComponent = lhs.0
-//        var rhsComponent = rhs.0
-//        
-//        if rhs.1 != nil {
-//            components.append((Component(op: op, dice: []), nil))
-//        } else {
-//            let result  = castulate(
-//                lhsTerm: getLhsTerm(prevResult: lhs.1, lhsComponent: lhsComponent),
-//                op: rhsComponent.op,
-//                rhsTerm: rhsComponent.dice.reduce(0, {$0 + Double(castDie($1))})
-//            )
-//            components.removeLast()
-//            components.append((rhsComponent, result))
-//            components.append((Component(op: op, dice: []), nil))
-//        }
     }
     
     private func handleEqualsButtonPress() {
@@ -102,15 +77,8 @@ struct CastulatorView: View {
             }
         )
         
-//        if running.value.count == 1 && !running.rhs.terms.isEmpty && running.rhs.result == nil {
-//            running = RunningCastulations(value: running.value.map { $0 == running.rhs ? castulation : $0 })
-//            return
-//        }
-        print("castulation", castulation)
-        
         if running.rhs.result != nil {
             running = RunningCastulations(value: running.value + [castulation])
-            print("running", running.value)
             return
         }
         
@@ -335,11 +303,6 @@ struct DicePadView: View {
     }
 }
 
-struct Component: Codable, Hashable {
-    let op: Operation
-    let dice: [Dice]
-}
-
 enum Operation: Codable {
     case add, subtract, multiply, divide
     
@@ -352,8 +315,6 @@ enum Operation: Codable {
         }
     }
 }
-
-typealias ComponentWithResult = (Component, Double?)
 
 struct TermItem: Equatable, Hashable {
     let die: Dice
