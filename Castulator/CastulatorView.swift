@@ -155,7 +155,7 @@ struct CastulatorView: View {
                             Spacer()
                             
                             if running.lhs.result != nil && running.value.count > 2 {
-                                Text(String(running.total))
+                                Text(String(Int(running.total)))
                                     .font(Font.custom("MedievalSharp", size: 36)).frame(minHeight:24, maxHeight: 64)
                             } else {
                                 if running.value.count == 1 {
