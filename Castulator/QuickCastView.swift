@@ -50,7 +50,7 @@ struct QuickCastView: View {
                             } else {
                                 List(results.sorted(by: {$0.castDate > $1.castDate})) { res in
                                     HStack {
-                                        CastResultHistoryView(result: res)
+                                        QuickCastResultHistoryView(result: res)
                                     }
                                     .frame(maxHeight: 64)
                                     .listRowBackground(Color.clear)

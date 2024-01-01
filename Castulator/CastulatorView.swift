@@ -8,153 +8,143 @@
 import SwiftUI
 
 struct CastulatorView: View {
-    @State private var components: [Component] = [Component(op: .add, dice: [])]
-    @State private var prevResult: Double?
-    @State private var result: Double?
-    
-    private func castulate(lhsTerm: Double, op: Operation, rhsTerm: Double) -> Double {
-        switch op {
-        case .add: floor(lhsTerm + rhsTerm)
-        case .subtract: floor(lhsTerm - rhsTerm)
-        case .multiply: floor(lhsTerm * rhsTerm)
-        case .divide: floor(lhsTerm / (rhsTerm == 0 ? 1 : rhsTerm))
-        }
-    }
-    
-    private func getLhsTerm(prevResult: Double?, lhsComponent: Component) -> Double {
-        if prevResult != nil {
-            return prevResult!
-        }
-        
-        return lhsComponent.dice.reduce(0, {$0 + Double(castDie($1))})
-    }
+    @State private var running: RunningCastulations = RunningCastulations()
     
     private func handleDiceButtonPress(_ die: Dice) {
-        if result != nil {
-            result = nil
-            let op = components.last?.op ?? Operation.add
-            components.removeLast()
-            components.append(Component(op: op, dice: [die]))
+        // if we have a castulation result already, begin a new castulation
+        if running.rhs.result != nil {
+            running = RunningCastulations(value: running.value + [Castulation()])
             return
         }
         
-        components = components.map { comp in
-            if comp == components.last {
-                var newDice = comp.dice
-                newDice.append(die)
-                return Component(op: comp.op, dice: newDice)
-            }
-            return comp
+        // otherwise, append the indicated die to the current castulation
+        // but only if there are less than 9 (arbitrary, modeled from iOS calculator app, non-scientific view)
+        if running.rhs.terms.count < 9 {
+            let castulation = Castulation(
+                operation: running.rhs.operation,
+                terms: running.rhs.terms + [TermItem(die: die, roll: nil)]
+            )
+            
+            running = RunningCastulations(value: running.value.map { $0 == running.rhs ? castulation : $0 })
         }
     }
     
     private func handleOpButtonPress(_ op: Operation) {
-        let currentOp = components.last?.op ?? .add
-        let currentDice = components.last?.dice ?? []
         
-        // repeat press
-        if op == currentOp && currentDice.isEmpty { return }
+        // ignore repeat press
+        if running.rhs.operation == op && running.rhs.result == nil { return }
         
-        // switch op
-        if op != currentOp && currentDice.isEmpty {
-            components.removeLast()
-            components.append(Component(op: op, dice: []))
-            return
-        }
+        // ignore if only one castulation and zero dice
+        if running.rhs.operation != op && running.rhs.terms.isEmpty && running.value.count == 1 { return }
         
-        if components.count == 1 && !currentDice.isEmpty {
-            components.append(Component(op: op, dice: []))
-            return
-        }
-        
-        let lhsComponent = components[components.count - 2]
-        let rhsComponent = components.last ?? Component(op: .add, dice: [])
-        
-        if result != nil {
-            prevResult = result
-            components.append(Component(op: op, dice: []))
-            result = nil
-        } else {
-            prevResult = castulate(
-                lhsTerm: getLhsTerm(prevResult: prevResult, lhsComponent: lhsComponent),
-                op: rhsComponent.op,
-                rhsTerm: rhsComponent.dice.reduce(0, {$0 + Double(castDie($1))})
+        // switch op of current castulation if no result yet and zero dice
+        if running.rhs.operation != op && running.rhs.terms.isEmpty && running.value.count > 1 {
+            let castulation = Castulation(
+                operation: op
             )
-            components.append(Component(op: op, dice: []))
+            
+            running = RunningCastulations(value: running.value.map { $0 == running.rhs ? castulation : $0 })
+            return
         }
+        
+        // append a new castulation if we have a result for the current castulation
+        if !running.rhs.terms.isEmpty && running.rhs.result != nil {
+            running = RunningCastulations(value: running.value + [Castulation(operation: op)])
+            return
+        }
+        
+        // otherwise, get result for current castulation and then append new castulation
+        let castulation = Castulation(
+            operation: running.rhs.operation,
+            terms: running.rhs.terms.map { item in
+                TermItem(die: item.die, roll: castDie(item.die))
+            }
+        )
+        
+        running = RunningCastulations(value: running.value.map { $0 == running.rhs ? castulation : $0 } + [Castulation(operation: op)])
+        
+        
+//        if components.count == 1 && !currentDice.isEmpty {
+//            components.append((Component(op: op, dice: []), nil))
+//            return
+//        }
+        
+//        let lhs = components[components.count - 2]
+//        let rhs = components.last ?? (Component(op: .add, dice: []), nil)
+//        
+//        let lhsComponent = lhs.0
+//        var rhsComponent = rhs.0
+//        
+//        if rhs.1 != nil {
+//            components.append((Component(op: op, dice: []), nil))
+//        } else {
+//            let result  = castulate(
+//                lhsTerm: getLhsTerm(prevResult: lhs.1, lhsComponent: lhsComponent),
+//                op: rhsComponent.op,
+//                rhsTerm: rhsComponent.dice.reduce(0, {$0 + Double(castDie($1))})
+//            )
+//            components.removeLast()
+//            components.append((rhsComponent, result))
+//            components.append((Component(op: op, dice: []), nil))
+//        }
     }
     
     private func handleEqualsButtonPress() {
-        let currentDice = components.last?.dice ?? []
+        // ignore if nothing to work with
+        if running.value.count == 1 && running.rhs.terms.isEmpty { return }
         
-        if components.count == 1 && currentDice.isEmpty { return }
-        
-        let rhsComponent = components.last ?? Component(op: .add, dice: [])
-        
-        if components.count == 1 && !currentDice.isEmpty {
-            if result == nil {
-                result = rhsComponent.dice.reduce(0, {$0 + Double(castDie($1))})
-                return
-            } else {
-                prevResult = result
-                components.append(components.last!)
+        // if there are some dice to work with in a single present castulation,
+        // roll them if they haven't been rolled yet
+        let castulation = Castulation(
+            operation: running.rhs.operation,
+            terms: running.rhs.terms.map { item in
+                TermItem(die: item.die, roll: castDie(item.die))
             }
-        }
-        
-        if result != nil {
-            prevResult = result
-        }
-            
-        let lhsComponent = components[components.count - 2]
-        
-        result = castulate(
-            lhsTerm: getLhsTerm(prevResult: prevResult, lhsComponent: lhsComponent),
-            op: rhsComponent.op,
-            rhsTerm: rhsComponent.dice.reduce(0, {$0 + Double(castDie($1))})
         )
+        
+//        if running.value.count == 1 && !running.rhs.terms.isEmpty && running.rhs.result == nil {
+//            running = RunningCastulations(value: running.value.map { $0 == running.rhs ? castulation : $0 })
+//            return
+//        }
+        print("castulation", castulation)
+        
+        if running.rhs.result != nil {
+            running = RunningCastulations(value: running.value + [castulation])
+            print("running", running.value)
+            return
+        }
+        
+        running = RunningCastulations(value: running.value.map { $0 == running.rhs ? castulation : $0 })
     }
     
     private func handleClearButtonPress() {
-        result = nil
-        prevResult = nil
-        components = [Component(op: .add, dice: [])]
+        running = RunningCastulations()
     }
     
     private func handleRerollButtonPress() {
-        if components.count == 1 && result == nil {
+        // ignore if nothing to reroll
+        if running.value.count == 1 && running.rhs.result == nil {
             return
         }
         
-        if components.count == 1 && result != nil {
-            result = components.last!.dice.reduce(0, {$0 + Double(castDie($1))})
-            return
-        }
-        
-        if components.count > 1 && result == nil {
-            if components.last!.dice.isEmpty || prevResult == nil {
-                return
-            }
-        }
-        
-        result = castulate(lhsTerm: getLhsTerm(prevResult: prevResult, lhsComponent: components[components.count - 2]), op: components.last!.op, rhsTerm: components.last!.dice.reduce(0, {$0 + Double(castDie($1))}))
-    }
-    
-    private func handleRerollAllButtonPress() {
-        let allButLast = components.filter { $0 == components.last }
-        let last = components.last
-        
-        let rerollAllButLast = allButLast.reduce(
-            0,
-            { acc, cur in
-                return castulate(lhsTerm: acc, op: cur.op, rhsTerm: cur.dice.reduce(0, {$0 + Double(castDie($1))}))
+        let castulation = Castulation(
+            operation: running.rhs.operation,
+            terms: running.rhs.terms.map { item in
+                item == running.rhs.terms[running.rhs.terms.count - 1]
+                    ? TermItem(die: item.die, roll: castDie(item.die))
+                    : item
             }
         )
         
-        prevResult = rerollAllButLast
-        
-        if last != nil && !last!.dice.isEmpty && result != nil {
-            result = castulate(lhsTerm: rerollAllButLast, op: last!.op, rhsTerm: last!.dice.reduce(0, {$0 + Double(castDie($1))}))
-        }
+        running = RunningCastulations(value: running.value.map { $0 == running.rhs ? castulation : $0 } )
+    }
+    
+    private func handleRerollAllButtonPress() {
+        running = RunningCastulations(value: running.value.map { castulation in
+            Castulation(operation: castulation.operation, terms: castulation.terms.map { item in
+                TermItem(die: item.die, roll: castDie(item.die))
+            })
+        })
     }
     
     var body: some View {
@@ -164,17 +154,17 @@ struct CastulatorView: View {
                         HStack {
                             Spacer()
                             
-                            if prevResult != nil {
-                                Text(String(Int(prevResult!)))
+                            if running.lhs.result != nil && running.value.count > 2 {
+                                Text(String(running.total))
                                     .font(Font.custom("MedievalSharp", size: 36)).frame(minHeight:24, maxHeight: 64)
                             } else {
-                                if components.count == 1 {
-                                    ForEach(components[0].dice, id: \.self) { die in
-                                        Image(die.rawValue).resizable().scaledToFit().frame(minHeight: 24, maxHeight: 64)
+                                if running.value.count == 1 {
+                                    ForEach(running.rhs.terms, id: \.self) { term in
+                                        Image(term.die.rawValue).resizable().scaledToFit().frame(minHeight: 24, maxHeight: 64)
                                     }
                                 } else {
-                                    ForEach(components[components.count - 2].dice, id: \.self) { die in
-                                        Image(die.rawValue).resizable().scaledToFit().frame(minHeight: 24, maxHeight: 64)
+                                    ForEach(running.lhs.terms, id: \.self) { term in
+                                        Image(term.die.rawValue).resizable().scaledToFit().frame(minHeight: 24, maxHeight: 64)
                                     }
                                 }
                                 
@@ -182,12 +172,12 @@ struct CastulatorView: View {
                         }
                         
                         VStack {
-                            if components.count > 1 {
+                            if running.value.count > 1 {
                                 HStack {
-                                    Image(systemName: components.last!.op.toString)
+                                    Image(systemName: running.rhs.operation.toString)
                                     Spacer()
-                                    ForEach(components.last!.dice, id: \.self) { die in
-                                        Image(die.rawValue).resizable().scaledToFit().frame(minHeight: 24, maxHeight: 64)
+                                    ForEach(running.rhs.terms, id: \.self) { term in
+                                        Image(term.die.rawValue).resizable().scaledToFit().frame(minHeight: 24, maxHeight: 64)
                                     }
                                     
                                 }.frame(minHeight: 24, maxHeight: 64)
@@ -195,12 +185,10 @@ struct CastulatorView: View {
                             }
                         }
                         
-                        
-                        
-                        if result != nil {
+                        if running.rhs.result != nil {
                             HStack {
                                 Spacer()
-                                Text(String(Int(result!)))
+                                Text(String(Int(Castulation.castulate(lhsTerm: running.total, op: running.rhs.operation, rhsTerm: Double(running.rhs.result!)))))
                                     .font(Font.custom("MedievalSharp", size: 42))
                             }
                         }
@@ -362,5 +350,76 @@ enum Operation: Codable {
         case .multiply: return "multiply"
         case .divide: return "divide"
         }
+    }
+}
+
+typealias ComponentWithResult = (Component, Double?)
+
+struct TermItem: Equatable, Hashable {
+    let die: Dice
+    let roll: UInt?
+}
+
+struct Castulation: Identifiable, Equatable {
+    let id = UUID()
+    let operation: Operation
+    let terms: [TermItem]
+    
+    var result: UInt? {
+        let rolls = self.terms.compactMap { $0.roll }
+        
+        return rolls.count > 0
+            ? rolls.reduce(0) { $0 + $1 }
+            : nil
+    }
+    
+    static func castulate(lhsTerm: Double, op: Operation, rhsTerm: Double) -> Double {
+        switch op {
+        case .add: floor(lhsTerm + rhsTerm)
+        case .subtract: floor(lhsTerm - rhsTerm)
+        case .multiply: floor(lhsTerm * rhsTerm)
+        case .divide: floor(lhsTerm / (rhsTerm == 0 ? 1 : rhsTerm))
+        }
+    }
+    
+    init(operation: Operation = .add, terms: [TermItem] = []) {
+        self.operation = operation
+        self.terms = terms
+    }
+    
+    static func == (lhs: Castulation, rhs: Castulation) -> Bool {
+        lhs.id == rhs.id
+    }
+}
+
+struct RunningCastulations {
+    let value: [Castulation]
+    
+    var rhs: Castulation {
+        value.last ?? Castulation()
+    }
+    
+    var lhs: Castulation {
+        value.count <= 1
+            ? Castulation()
+            : value[value.count - 2]
+    }
+    
+    var total: Double {
+        value.reduce(0) { total, castulation in
+            if castulation == value[value.count - 1] {
+                return total
+            }
+            
+            if castulation.result != nil {
+                return Castulation.castulate(lhsTerm: total, op: castulation.operation, rhsTerm: Double(castulation.result!))
+            }
+            
+            return total
+        }
+    }
+    
+    init(value: [Castulation] = [Castulation()]) {
+        self.value = value
     }
 }
