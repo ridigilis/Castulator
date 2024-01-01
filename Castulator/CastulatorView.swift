@@ -128,11 +128,23 @@ struct CastulatorView: View {
                             } else {
                                 if running.value.count == 1 {
                                     ForEach(running.rhs.terms, id: \.self) { term in
-                                        Image(term.die.rawValue).resizable().scaledToFit().frame(minHeight: 24, maxHeight: 64)
+                                        ZStack {
+                                            Image(term.die.rawValue).resizable().scaledToFit().frame(minHeight: 24, maxHeight: 64).opacity(term.roll != nil ? 0.3 : 1)
+                                            if term.roll != nil {
+                                                Text(String(Int(term.roll!)))
+                                                    .font(Font.custom("MedievalSharp", size: 24))
+                                            }
+                                        }
                                     }
                                 } else {
                                     ForEach(running.lhs.terms, id: \.self) { term in
-                                        Image(term.die.rawValue).resizable().scaledToFit().frame(minHeight: 24, maxHeight: 64)
+                                        ZStack {
+                                            Image(term.die.rawValue).resizable().scaledToFit().frame(minHeight: 24, maxHeight: 64).opacity(term.roll != nil ? 0.3 : 1)
+                                            if term.roll != nil {
+                                                Text(String(Int(term.roll!)))
+                                                    .font(Font.custom("MedievalSharp", size: 24))
+                                            }
+                                        }
                                     }
                                 }
                                 
@@ -145,7 +157,13 @@ struct CastulatorView: View {
                                     Image(systemName: running.rhs.operation.toString)
                                     Spacer()
                                     ForEach(running.rhs.terms, id: \.self) { term in
-                                        Image(term.die.rawValue).resizable().scaledToFit().frame(minHeight: 24, maxHeight: 64)
+                                        ZStack {
+                                            Image(term.die.rawValue).resizable().scaledToFit().frame(minHeight: 24, maxHeight: 64).opacity(term.roll != nil ? 0.3 : 1)
+                                            if term.roll != nil {
+                                                Text(String(Int(term.roll!)))
+                                                    .font(Font.custom("MedievalSharp", size: 24))
+                                            }
+                                        }
                                     }
                                     
                                 }.frame(minHeight: 24, maxHeight: 64)
