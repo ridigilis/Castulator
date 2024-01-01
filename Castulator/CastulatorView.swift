@@ -18,8 +18,8 @@ struct CastulatorView: View {
         }
         
         // otherwise, append the indicated die to the current castulation
-        // but only if there are less than 9 (arbitrary, modeled from iOS calculator app, non-scientific view)
-        if running.rhs.terms.count < 9 {
+        // but only if there are less than 6
+        if running.rhs.terms.count < 6 {
             let castulation = Castulation(
                 operation: running.rhs.operation,
                 terms: running.rhs.terms + [TermItem(die: die, roll: nil)]
