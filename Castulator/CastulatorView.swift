@@ -218,13 +218,13 @@ struct DicePadView: View {
                 Button {
                     onDiceButtonPress(.d20)
                 } label: {
-                    Image("d20").resizable().scaledToFit()
+                    Image("d20").resizable().scaledToFit().padding(-18)
                 }.padding()
                 
                 Button {
                     onDiceButtonPress(.d100)
                 } label: {
-                    Image("d100").resizable().scaledToFit()
+                    Image("d100").resizable().scaledToFit().padding(-24)
                 }.padding()
                 
                 Button {
@@ -244,13 +244,13 @@ struct DicePadView: View {
                 Button {
                     onDiceButtonPress(.d10)
                 } label: {
-                    Image("d10").resizable().scaledToFit()
+                    Image("d10").resizable().scaledToFit().padding(-24)
                 }.padding()
                 
                 Button {
                     onDiceButtonPress(.d12)
                 } label: {
-                    Image("d12").resizable().scaledToFit()
+                    Image("d12").resizable().scaledToFit().padding(-16)
                 }.padding()
                 
                 Button {
@@ -270,13 +270,13 @@ struct DicePadView: View {
                 Button {
                     onDiceButtonPress(.d6)
                 } label: {
-                    Image("d6").resizable().scaledToFit()
+                    Image("d6").resizable().scaledToFit().padding(-18)
                 }.padding()
                 
                 Button {
                     onDiceButtonPress(.d8)
                 } label: {
-                    Image("d8").resizable().scaledToFit()
+                    Image("d8").resizable().scaledToFit().padding(-18)
                 }.padding()
                 
                 Button {
@@ -296,13 +296,13 @@ struct DicePadView: View {
                 Button {
                     onDiceButtonPress(.d2)
                 } label: {
-                    Image("d2").resizable().scaledToFit()
+                    Image("d2").resizable().scaledToFit().padding(-18)
                 }.padding()
                 
                 Button {
                     onDiceButtonPress(.d4)
                 } label: {
-                    Image("d4").resizable().scaledToFit()
+                    Image("d4").resizable().scaledToFit().padding(-18)
                 }.padding()
                 
                 Button {
