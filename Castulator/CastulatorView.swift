@@ -120,58 +120,85 @@ struct CastulatorView: View {
                 ZStack {
                     VStack {
                         HStack {
-                            Spacer()
-                            
                             if running.lhs.result != nil && running.value.count > 2 {
+                                Spacer()
                                 Text(String(Int(running.total)))
-                                    .font(Font.custom("MedievalSharp", size: 36)).frame(minHeight:24, maxHeight: 64)
+                                    .font(Font.custom("MedievalSharp", size: 36)).frame(minHeight:24, maxHeight: 64).padding(.vertical, -12)
                             } else {
                                 if running.value.count == 1 {
-                                    ForEach(running.rhs.terms, id: \.self) { term in
+                                    if running.rhs.result != nil {
+                                        Image(systemName: Operation.add.toString)
+                                    }
+                                    Spacer()
+                                    ForEach(running.rhs.terms) { term in
                                         ZStack {
-                                            Image(term.die.rawValue).resizable().scaledToFit().frame(minHeight: 24, maxHeight: 64).opacity(term.roll != nil ? 0.3 : 1)
+                                            Image(term.die.rawValue)
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(minHeight: 24, maxHeight: 64)
+                                                .padding(term.die.rawValue == "d12" ? -6 : -12)
+                                                .opacity(term.roll != nil ? 0.3 : 1)
                                             if term.roll != nil {
                                                 Text(String(Int(term.roll!)))
                                                     .font(Font.custom("MedievalSharp", size: 24))
                                             }
+                                        }
+                                        if term != running.rhs.terms.last {
+                                            Image(systemName: Operation.add.toString).resizable().frame(width: 6, height: 6)
                                         }
                                     }
                                 } else {
-                                    ForEach(running.lhs.terms, id: \.self) { term in
+                                    Spacer()
+                                    ForEach(running.lhs.terms) { term in
                                         ZStack {
-                                            Image(term.die.rawValue).resizable().scaledToFit().frame(minHeight: 24, maxHeight: 64).opacity(term.roll != nil ? 0.3 : 1)
+                                            Image(term.die.rawValue)
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(minHeight: 24, maxHeight: 64)
+                                                .padding(term.die.rawValue == "d12" ? -6 : -12)
+                                                .opacity(term.roll != nil ? 0.3 : 1)
                                             if term.roll != nil {
                                                 Text(String(Int(term.roll!)))
                                                     .font(Font.custom("MedievalSharp", size: 24))
                                             }
                                         }
+                                        if term != running.lhs.terms.last {
+                                            Image(systemName: Operation.add.toString).resizable().frame(width: 6, height: 6)
+                                        }
                                     }
                                 }
-                                
                             }
-                        }
+                        }.padding(.bottom, 12)
                         
                         VStack {
                             if running.value.count > 1 {
                                 HStack {
                                     Image(systemName: running.rhs.operation.toString)
                                     Spacer()
-                                    ForEach(running.rhs.terms, id: \.self) { term in
+                                    ForEach(running.rhs.terms) { term in
                                         ZStack {
-                                            Image(term.die.rawValue).resizable().scaledToFit().frame(minHeight: 24, maxHeight: 64).opacity(term.roll != nil ? 0.3 : 1)
+                                            Image(term.die.rawValue)
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(minHeight: 24, maxHeight: 64)
+                                                .padding(term.die.rawValue == "d12" ? -6 : -12)
+                                                .opacity(term.roll != nil ? 0.3 : 1)
                                             if term.roll != nil {
                                                 Text(String(Int(term.roll!)))
                                                     .font(Font.custom("MedievalSharp", size: 24))
                                             }
                                         }
+                                        if term != running.rhs.terms.last {
+                                            Image(systemName: Operation.add.toString).resizable().frame(width: 6, height: 6)
+                                        }
                                     }
                                     
-                                }.frame(minHeight: 24, maxHeight: 64)
-                                Divider()
+                                }.frame(minHeight: 24, maxHeight: 64).padding(.top, -6)
                             }
                         }
                         
                         if running.rhs.result != nil {
+                            Divider()
                             HStack {
                                 Spacer()
                                 Text(String(Int(Castulation.castulate(lhsTerm: running.total, op: running.rhs.operation, rhsTerm: Double(running.rhs.result!)))))
@@ -334,7 +361,8 @@ enum Operation: Codable {
     }
 }
 
-struct TermItem: Equatable, Hashable {
+struct TermItem: Equatable, Hashable, Identifiable {
+    let id = UUID()
     let die: Dice
     let roll: UInt?
 }
