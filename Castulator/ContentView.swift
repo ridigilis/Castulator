@@ -16,3 +16,7 @@ struct ContentView: View {
         .tint(.primary)
     }
 }
+
+#Preview {
+    ContentView()
+}
