@@ -122,8 +122,13 @@ struct CastulatorView: View {
                         HStack {
                             if running.lhs.result != nil && running.value.count > 2 {
                                 Spacer()
-                                Text(String(Int(running.total)))
-                                    .font(Font.custom("MedievalSharp", size: 36)).frame(minHeight:24, maxHeight: 64).padding(.vertical, -12)
+                                if running.total == Double.infinity || running.total > Double(Int.max) {
+                                    Text("Infinity")
+                                        .font(Font.custom("MedievalSharp", size: 36)).frame(minHeight:24, maxHeight: 64).padding(.vertical, -12)
+                                } else {
+                                    Text(String(Int(running.total)))
+                                        .font(Font.custom("MedievalSharp", size: 36)).frame(minHeight:24, maxHeight: 64).padding(.vertical, -12)
+                                }
                             } else {
                                 if running.value.count == 1 {
                                     if running.rhs.result != nil {
@@ -201,8 +206,14 @@ struct CastulatorView: View {
                             Divider()
                             HStack {
                                 Spacer()
-                                Text(String(Int(Castulation.castulate(lhsTerm: running.total, op: running.rhs.operation, rhsTerm: Double(running.rhs.result!)))))
-                                    .font(Font.custom("MedievalSharp", size: 42))
+                                if Castulation.castulate(lhsTerm: running.total, op: running.rhs.operation, rhsTerm: Double(running.rhs.result!)) == Double.infinity {
+                                    Text("Infinity").font(Font.custom("MedievalSharp", size: 42))
+                                } else if Castulation.castulate(lhsTerm: running.total, op: running.rhs.operation, rhsTerm: Double(running.rhs.result!)) > Double(Int.max) {
+                                    Text("Infinity").font(Font.custom("MedievalSharp", size: 42))
+                                } else {
+                                    Text(String(Int(Castulation.castulate(lhsTerm: running.total, op: running.rhs.operation, rhsTerm: Double(running.rhs.result!)))))
+                                        .font(Font.custom("MedievalSharp", size: 42))
+                                }
                             }
                         }
                         
