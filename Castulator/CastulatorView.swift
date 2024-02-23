@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CastulatorView: View {
+    @Environment(\.colorScheme) private var colorScheme
     @State private var running: RunningCastulations = RunningCastulations()
     
     private func handleDiceButtonPress(_ die: Dice) {
@@ -155,9 +156,7 @@ struct CastulatorView: View {
                                         }
                                         label: {
                                             ZStack{
-                                                Image(term.die.rawValue)
-                                                    .resizable()
-                                                    .scaledToFit()
+                                                DynamicImage(term.die.rawValue)
                                                     .frame(minHeight: 24, maxHeight: 64)
                                                     .padding(term.die.rawValue == "d12" ? -6 : -12)
                                                     .opacity(term.roll != nil ? 0.3 : 1)
@@ -179,9 +178,7 @@ struct CastulatorView: View {
                                             }
                                             label: {
                                                 ZStack{
-                                                    Image(term.die.rawValue)
-                                                        .resizable()
-                                                        .scaledToFit()
+                                                    DynamicImage(term.die.rawValue)
                                                         .frame(minHeight: 24, maxHeight: 64)
                                                         .padding(term.die.rawValue == "d12" ? -6 : -12)
                                                         .opacity(term.roll != nil ? 0.3 : 1)
@@ -210,9 +207,7 @@ struct CastulatorView: View {
                                         }
                                         label: {
                                             ZStack{
-                                                Image(term.die.rawValue)
-                                                    .resizable()
-                                                    .scaledToFit()
+                                                DynamicImage(term.die.rawValue)
                                                     .frame(minHeight: 24, maxHeight: 64)
                                                     .padding(term.die.rawValue == "d12" ? -6 : -12)
                                                     .opacity(term.roll != nil ? 0.3 : 1)
@@ -262,10 +257,26 @@ struct CastulatorView: View {
                     }
                 }
                 .padding()
-                .background(Image("parchment-light").resizable().scaledToFill().ignoresSafeArea(.all).opacity(0.6))
+                .background(Image(colorScheme == .dark ? "parchment-dark" : "parchment-light").resizable().scaledToFill().ignoresSafeArea(.all).opacity(0.6))
         }
         .tabItem {
             Label("Castulator", systemImage: "scroll.fill")
+        }
+    }
+}
+
+struct DynamicImage: View {
+    @Environment(\.colorScheme) private var colorScheme
+    let image: String
+    init(_ image: String) {
+        self.image = image
+    }
+    
+    var body: some View {
+        if colorScheme == .dark {
+            Image(image).resizable().scaledToFit().colorInvert()
+        } else {
+            Image(image).resizable().scaledToFit()
         }
     }
 }
@@ -284,19 +295,19 @@ struct DicePadView: View {
                 Button {
                     onDiceButtonPress(.d20)
                 } label: {
-                    Image("d20").resizable().scaledToFit().padding(-18)
+                    DynamicImage("d20").padding(-18)
                 }.padding()
                 
                 Button {
                     onDiceButtonPress(.d100)
                 } label: {
-                    Image("d100").resizable().scaledToFit().padding(-24)
+                    DynamicImage("d100").padding(-24)
                 }.padding()
                 
                 Button {
                     onOpButtonPress(.divide)
                 } label: {
-                    Image(Operation.divide.toString).resizable().scaledToFit()
+                    DynamicImage(Operation.divide.toString)
                 }.padding()
                 
                 Button {
@@ -310,19 +321,19 @@ struct DicePadView: View {
                 Button {
                     onDiceButtonPress(.d10)
                 } label: {
-                    Image("d10").resizable().scaledToFit().padding(-24)
+                    DynamicImage("d10").padding(-24)
                 }.padding()
                 
                 Button {
                     onDiceButtonPress(.d12)
                 } label: {
-                    Image("d12").resizable().scaledToFit().padding(-16)
+                    DynamicImage("d12").padding(-16)
                 }.padding()
                 
                 Button {
                     onOpButtonPress(.multiply)
                 } label: {
-                    Image(Operation.multiply.toString).resizable().scaledToFit()
+                    DynamicImage(Operation.multiply.toString)
                 }.padding()
                 
                 Button {
@@ -336,19 +347,19 @@ struct DicePadView: View {
                 Button {
                     onDiceButtonPress(.d6)
                 } label: {
-                    Image("d6").resizable().scaledToFit().padding(-18)
+                    DynamicImage("d6").padding(-18)
                 }.padding()
                 
                 Button {
                     onDiceButtonPress(.d8)
                 } label: {
-                    Image("d8").resizable().scaledToFit().padding(-18)
+                    DynamicImage("d8").padding(-18)
                 }.padding()
                 
                 Button {
                     onOpButtonPress(.subtract)
                 } label: {
-                    Image(Operation.subtract.toString).resizable().scaledToFit()
+                    DynamicImage(Operation.subtract.toString)
                 }.padding()
                 
                 Button {
@@ -362,25 +373,25 @@ struct DicePadView: View {
                 Button {
                     onDiceButtonPress(.d2)
                 } label: {
-                    Image("d2").resizable().scaledToFit().padding(-18)
+                    DynamicImage("d2").padding(-18)
                 }.padding()
                 
                 Button {
                     onDiceButtonPress(.d4)
                 } label: {
-                    Image("d4").resizable().scaledToFit().padding(-18)
+                    DynamicImage("d4").padding(-18)
                 }.padding()
                 
                 Button {
                     onOpButtonPress(.add)
                 } label: {
-                    Image(Operation.add.toString).resizable().scaledToFit()
+                    DynamicImage(Operation.add.toString)
                 }.padding()
                 
                 Button {
                     onEqualsButtonPress()
                 } label: {
-                    Image("equals").resizable().scaledToFit()
+                    DynamicImage("equals")
                 }.padding()
             }
         }

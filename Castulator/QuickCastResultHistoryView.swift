@@ -14,9 +14,7 @@ struct QuickCastResultHistoryView: View {
     
     var body: some View {
         HStack {
-            Image(result.die.rawValue)
-                .resizable()
-                .scaledToFit()
+            DynamicImage(result.die.rawValue)
                 .opacity(0.5)
             Text(String(result.value))
                 .opacity(0.6)

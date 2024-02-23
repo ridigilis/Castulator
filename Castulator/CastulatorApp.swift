@@ -12,7 +12,7 @@ import SwiftData
 struct CastulatorApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView().preferredColorScheme(.light)
+            ContentView()
         }
         .modelContainer(for: QuickCastResult.self)
     }

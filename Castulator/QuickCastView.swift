@@ -10,6 +10,7 @@ import SwiftData
 
 struct QuickCastView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.colorScheme) private var colorScheme
     @Query private var results: [QuickCastResult]
     @State private var result: QuickCastResult?
     
@@ -37,7 +38,7 @@ struct QuickCastView: View {
                 }
             }            
             .padding()
-            .background(Image("parchment-light").resizable().scaledToFill().ignoresSafeArea(.all).opacity(0.6))
+            .background(Image(colorScheme == .dark ? "parchment-dark" : "parchment-light").resizable().scaledToFill().ignoresSafeArea(.all).opacity(0.6))
             .toolbar {
                 ToolbarItemGroup {
                     NavigationLink {
@@ -60,7 +61,7 @@ struct QuickCastView: View {
                         }
                         .navigationTitle("Cast History")
                         .scrollContentBackground(.hidden)
-                        .background(Image("parchment-light").resizable().scaledToFill().ignoresSafeArea(.all).opacity(0.6))
+                        .background(Image(colorScheme == .dark ? "parchment-dark" : "parchment-light").resizable().scaledToFill().ignoresSafeArea(.all).opacity(0.6))
                         .toolbar {
                             Button("Clear") {
                                 results.forEach { modelContext.delete($0) }

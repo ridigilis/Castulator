@@ -23,7 +23,7 @@ struct DiceButton: View {
             }
         } label: {
             ZStack {
-                Image(die.rawValue).resizable().scaledToFit().opacity(0.4)
+                DynamicImage(die.rawValue).opacity(0.4)
                 if result != nil {
                     Text(String(result!.value))
                         .font(

@@ -12,9 +12,7 @@ struct QuickCastResultView: View {
     
     var body: some View {
         ZStack {
-            Image(result.die.rawValue)
-                .resizable()
-                .scaledToFit()
+            DynamicImage(result.die.rawValue)
                 .opacity(0.30)
             Text(String(result.value))
                 .font(
