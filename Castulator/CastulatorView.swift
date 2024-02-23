@@ -89,7 +89,23 @@ struct CastulatorView: View {
         running = RunningCastulations()
     }
     
-    private func handleRerollButtonPress() {
+    private func handleRerollSingleButtonPress(term: TermItem, side: Castulation) {
+        // ignore if nothing to reroll
+        
+        let castulation = Castulation(
+            operation: side.operation,
+            terms: side.terms.map { item in
+                if term == item {
+                    return TermItem(die: item.die, roll: castDie(item.die))
+                }
+                return item
+            }
+        )
+        
+        running = RunningCastulations(value: running.value.map { $0 == side ? castulation : $0 } )
+    }
+    
+    private func handleRerollLastButtonPress() {
         // ignore if nothing to reroll
         if running.value.count == 1 && running.rhs.result == nil {
             return
@@ -120,8 +136,8 @@ struct CastulatorView: View {
                         HStack {
                             if running.lhs.result != nil && running.value.count > 2 {
                                 Spacer()
-                                if running.total == Double.infinity || running.total > Double(Int.max) {
-                                    Text("Infinity")
+                                if running.total == Double.infinity || running.total > Double(Int.max) || running.total < Double(Int.min) {
+                                    Text("\(running.total < Double(Int.min) ? "-" : "")Infinity")
                                         .font(Font.custom("MedievalSharp", size: 36)).frame(minHeight:24, maxHeight: 64).padding(.vertical, -12)
                                 } else {
                                     Text(String(Int(running.total)))
@@ -134,16 +150,21 @@ struct CastulatorView: View {
                                     }
                                     Spacer()
                                     ForEach(running.rhs.terms) { term in
-                                        ZStack {
-                                            Image(term.die.rawValue)
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(minHeight: 24, maxHeight: 64)
-                                                .padding(term.die.rawValue == "d12" ? -6 : -12)
-                                                .opacity(term.roll != nil ? 0.3 : 1)
-                                            if term.roll != nil {
-                                                Text(String(Int(term.roll!)))
-                                                    .font(Font.custom("MedievalSharp", size: 24))
+                                        Button {
+                                            handleRerollSingleButtonPress(term: term, side: running.rhs)
+                                        }
+                                        label: {
+                                            ZStack{
+                                                Image(term.die.rawValue)
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(minHeight: 24, maxHeight: 64)
+                                                    .padding(term.die.rawValue == "d12" ? -6 : -12)
+                                                    .opacity(term.roll != nil ? 0.3 : 1)
+                                                if term.roll != nil {
+                                                    Text(String(Int(term.roll!)))
+                                                        .font(Font.custom("MedievalSharp", size: 24))
+                                                }
                                             }
                                         }
                                         if term != running.rhs.terms.last {
@@ -153,18 +174,23 @@ struct CastulatorView: View {
                                 } else {
                                     Spacer()
                                     ForEach(running.lhs.terms) { term in
-                                        ZStack {
-                                            Image(term.die.rawValue)
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(minHeight: 24, maxHeight: 64)
-                                                .padding(term.die.rawValue == "d12" ? -6 : -12)
-                                                .opacity(term.roll != nil ? 0.3 : 1)
-                                            if term.roll != nil {
-                                                Text(String(Int(term.roll!)))
-                                                    .font(Font.custom("MedievalSharp", size: 24))
+                                            Button {
+                                                handleRerollSingleButtonPress(term: term, side: running.lhs)
                                             }
-                                        }
+                                            label: {
+                                                ZStack{
+                                                    Image(term.die.rawValue)
+                                                        .resizable()
+                                                        .scaledToFit()
+                                                        .frame(minHeight: 24, maxHeight: 64)
+                                                        .padding(term.die.rawValue == "d12" ? -6 : -12)
+                                                        .opacity(term.roll != nil ? 0.3 : 1)
+                                                    if term.roll != nil {
+                                                        Text(String(Int(term.roll!)))
+                                                            .font(Font.custom("MedievalSharp", size: 24))
+                                                    }
+                                                }
+                                            }
                                         if term != running.lhs.terms.last {
                                             Image(systemName: Operation.add.toString).resizable().frame(width: 6, height: 6)
                                         }
@@ -179,16 +205,21 @@ struct CastulatorView: View {
                                     Image(systemName: running.rhs.operation.toString)
                                     Spacer()
                                     ForEach(running.rhs.terms) { term in
-                                        ZStack {
-                                            Image(term.die.rawValue)
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(minHeight: 24, maxHeight: 64)
-                                                .padding(term.die.rawValue == "d12" ? -6 : -12)
-                                                .opacity(term.roll != nil ? 0.3 : 1)
-                                            if term.roll != nil {
-                                                Text(String(Int(term.roll!)))
-                                                    .font(Font.custom("MedievalSharp", size: 24))
+                                        Button {
+                                            handleRerollSingleButtonPress(term: term, side: running.rhs)
+                                        }
+                                        label: {
+                                            ZStack{
+                                                Image(term.die.rawValue)
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(minHeight: 24, maxHeight: 64)
+                                                    .padding(term.die.rawValue == "d12" ? -6 : -12)
+                                                    .opacity(term.roll != nil ? 0.3 : 1)
+                                                if term.roll != nil {
+                                                    Text(String(Int(term.roll!)))
+                                                        .font(Font.custom("MedievalSharp", size: 24))
+                                                }
                                             }
                                         }
                                         if term != running.rhs.terms.last {
@@ -201,15 +232,14 @@ struct CastulatorView: View {
                         }
                         
                         if running.rhs.result != nil {
+                            let runningTotal = Castulation.castulate(lhsTerm: running.total, op: running.rhs.operation, rhsTerm: Double(running.rhs.result!))
                             Divider()
                             HStack {
                                 Spacer()
-                                if Castulation.castulate(lhsTerm: running.total, op: running.rhs.operation, rhsTerm: Double(running.rhs.result!)) == Double.infinity {
-                                    Text("Infinity").font(Font.custom("MedievalSharp", size: 42))
-                                } else if Castulation.castulate(lhsTerm: running.total, op: running.rhs.operation, rhsTerm: Double(running.rhs.result!)) > Double(Int.max) {
-                                    Text("Infinity").font(Font.custom("MedievalSharp", size: 42))
+                                if runningTotal == Double.infinity || runningTotal > Double(Int.max) || runningTotal < Double(Int.min) {
+                                    Text("\(running.total < Double(Int.min) ? "-" : "")Infinity").font(Font.custom("MedievalSharp", size: 42))
                                 } else {
-                                    Text(String(Int(Castulation.castulate(lhsTerm: running.total, op: running.rhs.operation, rhsTerm: Double(running.rhs.result!)))))
+                                    Text(String(Int(runningTotal)))
                                         .font(Font.custom("MedievalSharp", size: 42))
                                 }
                             }
@@ -226,7 +256,7 @@ struct CastulatorView: View {
                             onOpButtonPress: handleOpButtonPress,
                             onEqualsButtonPress: handleEqualsButtonPress,
                             onClearButtonPress: handleClearButtonPress,
-                            onRerollButtonPress: handleRerollButtonPress,
+                            onRerollLastButtonPress: handleRerollLastButtonPress,
                             onRerollAllButtonPress: handleRerollAllButtonPress
                         )
                     }
@@ -245,7 +275,7 @@ struct DicePadView: View {
     var onOpButtonPress: (Operation) -> Void
     var onEqualsButtonPress: () -> Void
     var onClearButtonPress: () -> Void
-    var onRerollButtonPress: () -> Void
+    var onRerollLastButtonPress: () -> Void
     var onRerollAllButtonPress: () -> Void
     
     var body: some View {
@@ -322,7 +352,7 @@ struct DicePadView: View {
                 }.padding()
                 
                 Button {
-                    onRerollButtonPress()
+                    onRerollLastButtonPress()
                 } label: {
                     Text("Reroll Last").font(Font.custom("MedievalSharp", size: 16))
                 }.padding()
