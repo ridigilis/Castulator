@@ -98,9 +98,7 @@ struct CastulatorView: View {
         let castulation = Castulation(
             operation: running.rhs.operation,
             terms: running.rhs.terms.map { item in
-                item == running.rhs.terms[running.rhs.terms.count - 1]
-                    ? TermItem(die: item.die, roll: castDie(item.die))
-                    : item
+                TermItem(die: item.die, roll: castDie(item.die))
             }
         )
         
