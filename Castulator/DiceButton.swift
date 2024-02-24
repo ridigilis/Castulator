@@ -31,6 +31,15 @@ struct DiceButton: View {
                         )
                 }
             }
-        }.padding()
+        }
+        .padding()
+        .gesture(
+            DragGesture(minimumDistance: 10, coordinateSpace: .local)
+                .onEnded { value in
+                    if value.translation.width < 0 || value.translation.width > 0 {
+                        result = nil
+                    }
+                }
+        )
     }
 }
