@@ -313,7 +313,7 @@ struct DicePadView: View {
                 Button {
                     onClearButtonPress()
                 } label: {
-                    Text("Clear").font(Font.custom("MedievalSharp", size: 20))
+                    Text("Clear").font(Font.custom("MedievalSharp", size: 18)).dynamicTypeSize(.large)
                 }.padding()
             }
             
@@ -339,7 +339,7 @@ struct DicePadView: View {
                 Button {
                     onRerollAllButtonPress()
                 } label: {
-                    Text("Reroll All").font(Font.custom("MedievalSharp", size: 16))
+                    Text("Reroll All").font(Font.custom("MedievalSharp", size: 16)).dynamicTypeSize(.large)
                 }.padding()
             }
             
@@ -365,7 +365,7 @@ struct DicePadView: View {
                 Button {
                     onRerollLastButtonPress()
                 } label: {
-                    Text("Reroll Last").font(Font.custom("MedievalSharp", size: 16))
+                    Text("Reroll Last").font(Font.custom("MedievalSharp", size: 16)).dynamicTypeSize(.large)
                 }.padding()
             }
             
