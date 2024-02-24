@@ -130,12 +130,17 @@ struct CastulatorView: View {
         })
     }
     
+    private func removeLastTerm() {
+        let side = running.rhs.terms.count == 0 && running.value.count <= 2 ? running.lhs : running.rhs
+        running = RunningCastulations(value: running.value.map { $0 == side ? Castulation(operation: $0.operation, terms: $0.terms.dropLast()) : $0} )
+    }
+    
     var body: some View {
         NavigationStack {
                 ZStack {
                     VStack {
-                        HStack {
-                            if running.lhs.result != nil && running.value.count > 2 {
+                        if running.lhs.result != nil && running.value.count > 2 {
+                            HStack{
                                 Spacer()
                                 if running.total == Double.infinity || running.total > Double(Int.max) || running.total < Double(Int.min) {
                                     Text("\(running.total < Double(Int.min) ? "-" : "")Infinity")
@@ -144,8 +149,11 @@ struct CastulatorView: View {
                                     Text(String(Int(running.total)))
                                         .font(Font.custom("MedievalSharp", size: 36)).frame(minHeight:24, maxHeight: 64).padding(.vertical, -12)
                                 }
-                            } else {
-                                if running.value.count == 1 {
+                            }
+                            .padding(.bottom, 12)
+                        } else {
+                            if running.value.count == 1 {
+                                HStack {
                                     if running.rhs.result != nil {
                                         Image(systemName: Operation.add.toString)
                                     }
@@ -154,47 +162,52 @@ struct CastulatorView: View {
                                         Button {
                                             handleRerollSingleButtonPress(term: term, side: running.rhs)
                                         }
-                                        label: {
-                                            ZStack{
-                                                DynamicImage(term.die.rawValue)
-                                                    .frame(minHeight: 24, maxHeight: 64)
-                                                    .padding(term.die.rawValue == "d12" ? -6 : -12)
-                                                    .opacity(term.roll != nil ? 0.3 : 1)
-                                                if term.roll != nil {
-                                                    Text(String(Int(term.roll!)))
-                                                        .font(Font.custom("MedievalSharp", size: 24))
-                                                }
+                                    label: {
+                                        ZStack{
+                                            DynamicImage(term.die.rawValue)
+                                                .frame(minHeight: 24, maxHeight: 64)
+                                                .padding(term.die.rawValue == "d12" ? -6 : -12)
+                                                .opacity(term.roll != nil ? 0.3 : 1)
+                                            if term.roll != nil {
+                                                Text(String(Int(term.roll!)))
+                                                    .font(Font.custom("MedievalSharp", size: 24))
                                             }
                                         }
+                                    }
                                         if term != running.rhs.terms.last {
                                             Image(systemName: Operation.add.toString).resizable().frame(width: 6, height: 6)
                                         }
                                     }
-                                } else {
+                                }
+                                .padding(.bottom, 12)
+                            } else {
+                                HStack {
                                     Spacer()
                                     ForEach(running.lhs.terms) { term in
-                                            Button {
-                                                handleRerollSingleButtonPress(term: term, side: running.lhs)
+                                        Button {
+                                            handleRerollSingleButtonPress(term: term, side: running.lhs)
+                                        }
+                                    label: {
+                                        ZStack{
+                                            DynamicImage(term.die.rawValue)
+                                                .frame(minHeight: 24, maxHeight: 64)
+                                                .padding(term.die.rawValue == "d12" ? -6 : -12)
+                                                .opacity(term.roll != nil ? 0.3 : 1)
+                                            if term.roll != nil {
+                                                Text(String(Int(term.roll!)))
+                                                    .font(Font.custom("MedievalSharp", size: 24))
                                             }
-                                            label: {
-                                                ZStack{
-                                                    DynamicImage(term.die.rawValue)
-                                                        .frame(minHeight: 24, maxHeight: 64)
-                                                        .padding(term.die.rawValue == "d12" ? -6 : -12)
-                                                        .opacity(term.roll != nil ? 0.3 : 1)
-                                                    if term.roll != nil {
-                                                        Text(String(Int(term.roll!)))
-                                                            .font(Font.custom("MedievalSharp", size: 24))
-                                                    }
-                                                }
-                                            }
+                                        }
+                                    }
                                         if term != running.lhs.terms.last {
                                             Image(systemName: Operation.add.toString).resizable().frame(width: 6, height: 6)
                                         }
                                     }
                                 }
+                                .padding(.bottom, 12)
                             }
-                        }.padding(.bottom, 12)
+                        }
+                        
                         
                         VStack {
                             if running.value.count > 1 {
@@ -258,6 +271,14 @@ struct CastulatorView: View {
                 }
                 .padding()
                 .background(Image(colorScheme == .dark ? "parchment-dark" : "parchment-light").resizable().scaledToFill().ignoresSafeArea(.all).opacity(0.6))
+                .gesture(
+                    DragGesture(minimumDistance: 20, coordinateSpace: .global)
+                        .onEnded { value in
+                            if value.translation.width < 0 || value.translation.width > 0 {
+                                removeLastTerm()
+                            }
+                        }
+                )
         }
         .tabItem {
             Label("Castulator", systemImage: "scroll.fill")
