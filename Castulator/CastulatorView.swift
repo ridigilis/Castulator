@@ -316,13 +316,31 @@ struct DicePadView: View {
                 Button {
                     onDiceButtonPress(.d20)
                 } label: {
-                    DynamicImage("d20").padding(-18)
+                    DynamicImage("d20")
+                        .padding(-18)
+                        .overlay {
+                            Text("d20")
+                                .font(Font.custom("MedievalSharp", size: 18))
+                                .dynamicTypeSize(.medium)
+                                .background {
+                                    Capsule().colorInvert().padding(-4).opacity(0.6)
+                                }
+                        }
                 }.padding()
                 
                 Button {
                     onDiceButtonPress(.d100)
                 } label: {
-                    DynamicImage("d100").padding(-24)
+                    DynamicImage("d100")
+                        .padding(-24)
+                        .overlay {
+                            Text("d100")
+                                .font(Font.custom("MedievalSharp", size: 18))
+                                .dynamicTypeSize(.medium)
+                                .background {
+                                    Capsule().colorInvert().padding(-4).opacity(0.6)
+                                }
+                        }
                 }.padding()
                 
                 Button {
@@ -343,12 +361,28 @@ struct DicePadView: View {
                     onDiceButtonPress(.d10)
                 } label: {
                     DynamicImage("d10").padding(-24)
+                        .overlay {
+                            Text("d10")
+                                .font(Font.custom("MedievalSharp", size: 18))
+                                .dynamicTypeSize(.medium)
+                                .background {
+                                    Capsule().colorInvert().padding(-4).opacity(0.6)
+                                }
+                        }
                 }.padding()
                 
                 Button {
                     onDiceButtonPress(.d12)
                 } label: {
                     DynamicImage("d12").padding(-16)
+                        .overlay {
+                            Text("d12")
+                                .font(Font.custom("MedievalSharp", size: 18))
+                                .dynamicTypeSize(.medium)
+                                .background {
+                                    Capsule().colorInvert().padding(-4).opacity(0.6)
+                                }
+                        }
                 }.padding()
                 
                 Button {
@@ -369,12 +403,28 @@ struct DicePadView: View {
                     onDiceButtonPress(.d6)
                 } label: {
                     DynamicImage("d6").padding(-18)
+                        .overlay {
+                            Text("d6")
+                                .font(Font.custom("MedievalSharp", size: 18))
+                                .dynamicTypeSize(.medium)
+                                .background {
+                                    Capsule().colorInvert().padding(-4).opacity(0.6)
+                                }
+                        }
                 }.padding()
                 
                 Button {
                     onDiceButtonPress(.d8)
                 } label: {
                     DynamicImage("d8").padding(-18)
+                        .overlay {
+                            Text("d8")
+                                .font(Font.custom("MedievalSharp", size: 18))
+                                .dynamicTypeSize(.medium)
+                                .background {
+                                    Capsule().colorInvert().padding(-4).opacity(0.6)
+                                }
+                        }
                 }.padding()
                 
                 Button {
@@ -395,12 +445,28 @@ struct DicePadView: View {
                     onDiceButtonPress(.d2)
                 } label: {
                     DynamicImage("d2").padding(-18)
+                        .overlay {
+                            Text("d2")
+                                .font(Font.custom("MedievalSharp", size: 18))
+                                .dynamicTypeSize(.medium)
+                                .background {
+                                    Capsule().colorInvert().padding(-4).opacity(0.6)
+                                }
+                        }
                 }.padding()
                 
                 Button {
                     onDiceButtonPress(.d4)
                 } label: {
                     DynamicImage("d4").padding(-18)
+                        .overlay {
+                            Text("d4")
+                                .font(Font.custom("MedievalSharp", size: 18))
+                                .dynamicTypeSize(.medium)
+                                .background {
+                                    Capsule().colorInvert().padding(-4).opacity(0.6)
+                                }
+                        }
                 }.padding()
                 
                 Button {

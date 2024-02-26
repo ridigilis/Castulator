@@ -24,6 +24,14 @@ struct DiceButton: View {
         } label: {
             ZStack {
                 DynamicImage(die.rawValue).opacity(0.4)
+                    .overlay(alignment: result != nil ? .topLeading : .center) {
+                        Text(die.rawValue)
+                            .font(Font.custom("MedievalSharp", size: 18))
+                            .dynamicTypeSize(.xxLarge)
+                            .background {
+                                Capsule().colorInvert().padding(-4).opacity(0.6)
+                            }.opacity(result != nil ? 0.75 : 1)
+                    }
                 if result != nil {
                     Text(String(result!.value))
                         .font(

@@ -14,13 +14,21 @@ struct QuickCastResultHistoryView: View {
     
     var body: some View {
         HStack {
+            Text(result.die.rawValue)
+                .font(Font.custom("MedievalSharp", size: 18))
+                .dynamicTypeSize(.large)
+                .background {
+                    Capsule().colorInvert().padding(-4).opacity(0.6)
+                }.opacity(0.75)
             DynamicImage(result.die.rawValue)
-                .opacity(0.5)
-            Text(String(result.value))
-                .opacity(0.6)
-                .font(
-                    Font.custom("MedievalSharp", size: 24)
-                )
+                .opacity(0.2)
+                .overlay {
+                    Text(String(result.value))
+                        .opacity(0.8)
+                        .font(
+                            Font.custom("MedievalSharp", size: 24)
+                        )
+                }
             Spacer()
             Text("\(dateFormatter.localizedString(fromTimeInterval: result.castDate.timeIntervalSinceNow))")
         }
