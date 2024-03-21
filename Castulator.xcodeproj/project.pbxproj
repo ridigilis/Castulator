@@ -19,6 +19,7 @@
 		59E573FE2B23A716008ADF2A /* QuickCastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E573FD2B23A716008ADF2A /* QuickCastView.swift */; };
 		59E574002B23AC54008ADF2A /* CastulatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E573FF2B23AC54008ADF2A /* CastulatorView.swift */; };
 		59E5740A2B2B5AFF008ADF2A /* CastulatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E574092B2B5AFF008ADF2A /* CastulatorTests.swift */; };
+		F88FB9872BACD8A8002DD4C9 /* CastulatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88FB9862BACD8A8002DD4C9 /* CastulatorViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		59E573FF2B23AC54008ADF2A /* CastulatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastulatorView.swift; sourceTree = "<group>"; };
 		59E574072B2B5AFF008ADF2A /* CastulatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CastulatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		59E574092B2B5AFF008ADF2A /* CastulatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastulatorTests.swift; sourceTree = "<group>"; };
+		F88FB9862BACD8A8002DD4C9 /* CastulatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastulatorViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				598EA1772B178BB100E6A93B /* DiceButton.swift */,
 				59E573FD2B23A716008ADF2A /* QuickCastView.swift */,
 				59E573FF2B23AC54008ADF2A /* CastulatorView.swift */,
+				F88FB9862BACD8A8002DD4C9 /* CastulatorViewModel.swift */,
 			);
 			path = Castulator;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 				598EA1762B1789B700E6A93B /* QuickCastResultView.swift in Sources */,
 				59E574002B23AC54008ADF2A /* CastulatorView.swift in Sources */,
 				598EA1782B178BB100E6A93B /* DiceButton.swift in Sources */,
+				F88FB9872BACD8A8002DD4C9 /* CastulatorViewModel.swift in Sources */,
 				597DE9062B16621F006A85BC /* ContentView.swift in Sources */,
 				598EA1722B1788DC00E6A93B /* QuickCastResult.swift in Sources */,
 				597DE9042B16621F006A85BC /* CastulatorApp.swift in Sources */,
@@ -389,6 +393,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -424,6 +429,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
