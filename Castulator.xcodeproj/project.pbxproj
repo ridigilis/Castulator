@@ -20,6 +20,7 @@
 		59E574002B23AC54008ADF2A /* CastulatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E573FF2B23AC54008ADF2A /* CastulatorView.swift */; };
 		59E5740A2B2B5AFF008ADF2A /* CastulatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E574092B2B5AFF008ADF2A /* CastulatorTests.swift */; };
 		F88FB9872BACD8A8002DD4C9 /* CastulatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88FB9862BACD8A8002DD4C9 /* CastulatorViewModel.swift */; };
+		F88FB9892BACDF8D002DD4C9 /* DicePad.view.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88FB9882BACDF8D002DD4C9 /* DicePad.view.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		59E574072B2B5AFF008ADF2A /* CastulatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CastulatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		59E574092B2B5AFF008ADF2A /* CastulatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastulatorTests.swift; sourceTree = "<group>"; };
 		F88FB9862BACD8A8002DD4C9 /* CastulatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastulatorViewModel.swift; sourceTree = "<group>"; };
+		F88FB9882BACDF8D002DD4C9 /* DicePad.view.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DicePad.view.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				59E573FD2B23A716008ADF2A /* QuickCastView.swift */,
 				59E573FF2B23AC54008ADF2A /* CastulatorView.swift */,
 				F88FB9862BACD8A8002DD4C9 /* CastulatorViewModel.swift */,
+				F88FB9882BACDF8D002DD4C9 /* DicePad.view.swift */,
 			);
 			path = Castulator;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				598EA1762B1789B700E6A93B /* QuickCastResultView.swift in Sources */,
+				F88FB9892BACDF8D002DD4C9 /* DicePad.view.swift in Sources */,
 				59E574002B23AC54008ADF2A /* CastulatorView.swift in Sources */,
 				598EA1782B178BB100E6A93B /* DiceButton.swift in Sources */,
 				F88FB9872BACD8A8002DD4C9 /* CastulatorViewModel.swift in Sources */,
