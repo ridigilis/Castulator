@@ -1,3 +1,5 @@
+import SwiftUI
+
 struct DynamicImage: View {
     @Environment(\.colorScheme) private var colorScheme
     let image: String

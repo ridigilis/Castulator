@@ -59,7 +59,7 @@ extension CastulatorView {
             let castulation = Castulation(
                 operation: running.rhs.operation,
                 terms: running.rhs.terms.map { item in
-                    TermItem(die: item.die, roll: castDie(item.die))
+                    TermItem(die: item.die, roll: Dice.castDie(item.die))
                 }
             )
             
@@ -75,7 +75,7 @@ extension CastulatorView {
             let castulation = Castulation(
                 operation: running.rhs.operation,
                 terms: running.rhs.terms.map { item in
-                    TermItem(die: item.die, roll: castDie(item.die))
+                    TermItem(die: item.die, roll: Dice.castDie(item.die))
                 }
             )
             
@@ -98,7 +98,7 @@ extension CastulatorView {
                 operation: side.operation,
                 terms: side.terms.map { item in
                     if term == item {
-                        return TermItem(die: item.die, roll: castDie(item.die))
+                        return TermItem(die: item.die, roll: Dice.castDie(item.die))
                     }
                     return item
                 }
@@ -116,7 +116,7 @@ extension CastulatorView {
             let castulation = Castulation(
                 operation: running.rhs.operation,
                 terms: running.rhs.terms.map { item in
-                    TermItem(die: item.die, roll: castDie(item.die))
+                    TermItem(die: item.die, roll: Dice.castDie(item.die))
                 }
             )
             
@@ -126,7 +126,7 @@ extension CastulatorView {
         func handleRerollAllButtonPress() {
             running = RunningCastulations(value: running.value.map { castulation in
                 Castulation(operation: castulation.operation, terms: castulation.terms.map { item in
-                    TermItem(die: item.die, roll: castDie(item.die))
+                    TermItem(die: item.die, roll: Dice.castDie(item.die))
                 })
             })
         }
