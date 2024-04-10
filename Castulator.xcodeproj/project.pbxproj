@@ -19,6 +19,12 @@
 		59E573FE2B23A716008ADF2A /* QuickCast.view.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E573FD2B23A716008ADF2A /* QuickCast.view.swift */; };
 		59E574002B23AC54008ADF2A /* Castulator.view.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E573FF2B23AC54008ADF2A /* Castulator.view.swift */; };
 		59E5740A2B2B5AFF008ADF2A /* CastulatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E574092B2B5AFF008ADF2A /* CastulatorTests.swift */; };
+		F87F4AC82BC6F9C00064C854 /* DynamicImage.view.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87F4AC22BC6F9BF0064C854 /* DynamicImage.view.swift */; };
+		F87F4AC92BC6F9C00064C854 /* Dice.model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87F4AC32BC6F9BF0064C854 /* Dice.model.swift */; };
+		F87F4ACA2BC6F9C00064C854 /* Operation.model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87F4AC42BC6F9BF0064C854 /* Operation.model.swift */; };
+		F87F4ACB2BC6F9C00064C854 /* RunningCastulations.model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87F4AC52BC6F9C00064C854 /* RunningCastulations.model.swift */; };
+		F87F4ACC2BC6F9C00064C854 /* Castulation.model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87F4AC62BC6F9C00064C854 /* Castulation.model.swift */; };
+		F87F4ACD2BC6F9C00064C854 /* TermItem.model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87F4AC72BC6F9C00064C854 /* TermItem.model.swift */; };
 		F88FB9872BACD8A8002DD4C9 /* Castulator.viewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88FB9862BACD8A8002DD4C9 /* Castulator.viewmodel.swift */; };
 		F88FB9892BACDF8D002DD4C9 /* DicePad.view.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88FB9882BACDF8D002DD4C9 /* DicePad.view.swift */; };
 /* End PBXBuildFile section */
@@ -49,6 +55,12 @@
 		59E573FF2B23AC54008ADF2A /* Castulator.view.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Castulator.view.swift; sourceTree = "<group>"; };
 		59E574072B2B5AFF008ADF2A /* CastulatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CastulatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		59E574092B2B5AFF008ADF2A /* CastulatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastulatorTests.swift; sourceTree = "<group>"; };
+		F87F4AC22BC6F9BF0064C854 /* DynamicImage.view.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicImage.view.swift; sourceTree = "<group>"; };
+		F87F4AC32BC6F9BF0064C854 /* Dice.model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dice.model.swift; sourceTree = "<group>"; };
+		F87F4AC42BC6F9BF0064C854 /* Operation.model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.model.swift; sourceTree = "<group>"; };
+		F87F4AC52BC6F9C00064C854 /* RunningCastulations.model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunningCastulations.model.swift; sourceTree = "<group>"; };
+		F87F4AC62BC6F9C00064C854 /* Castulation.model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Castulation.model.swift; sourceTree = "<group>"; };
+		F87F4AC72BC6F9C00064C854 /* TermItem.model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermItem.model.swift; sourceTree = "<group>"; };
 		F88FB9862BACD8A8002DD4C9 /* Castulator.viewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Castulator.viewmodel.swift; sourceTree = "<group>"; };
 		F88FB9882BACDF8D002DD4C9 /* DicePad.view.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DicePad.view.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,6 +104,12 @@
 		597DE9022B16621F006A85BC /* Castulator */ = {
 			isa = PBXGroup;
 			children = (
+				F87F4AC62BC6F9C00064C854 /* Castulation.model.swift */,
+				F87F4AC32BC6F9BF0064C854 /* Dice.model.swift */,
+				F87F4AC22BC6F9BF0064C854 /* DynamicImage.view.swift */,
+				F87F4AC42BC6F9BF0064C854 /* Operation.model.swift */,
+				F87F4AC52BC6F9C00064C854 /* RunningCastulations.model.swift */,
+				F87F4AC72BC6F9C00064C854 /* TermItem.model.swift */,
 				597DE9032B16621F006A85BC /* CastulatorApp.swift */,
 				597DE9122B16CF67006A85BC /* Info.plist */,
 				597DE9112B16CD6A006A85BC /* MedievalSharp-Regular.ttf */,
@@ -229,11 +247,17 @@
 			files = (
 				598EA1762B1789B700E6A93B /* QuickCastResult.view.swift in Sources */,
 				F88FB9892BACDF8D002DD4C9 /* DicePad.view.swift in Sources */,
+				F87F4ACB2BC6F9C00064C854 /* RunningCastulations.model.swift in Sources */,
 				59E574002B23AC54008ADF2A /* Castulator.view.swift in Sources */,
+				F87F4ACC2BC6F9C00064C854 /* Castulation.model.swift in Sources */,
+				F87F4ACD2BC6F9C00064C854 /* TermItem.model.swift in Sources */,
 				598EA1782B178BB100E6A93B /* DiceButton.view.swift in Sources */,
 				F88FB9872BACD8A8002DD4C9 /* Castulator.viewmodel.swift in Sources */,
 				597DE9062B16621F006A85BC /* Content.view.swift in Sources */,
 				598EA1722B1788DC00E6A93B /* QuickCastResult.model.swift in Sources */,
+				F87F4AC92BC6F9C00064C854 /* Dice.model.swift in Sources */,
+				F87F4AC82BC6F9C00064C854 /* DynamicImage.view.swift in Sources */,
+				F87F4ACA2BC6F9C00064C854 /* Operation.model.swift in Sources */,
 				597DE9042B16621F006A85BC /* CastulatorApp.swift in Sources */,
 				59D04A4B2B182A34005631AD /* QuickCastResultHistory.view.swift in Sources */,
 				59E573FE2B23A716008ADF2A /* QuickCast.view.swift in Sources */,
