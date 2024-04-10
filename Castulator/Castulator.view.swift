@@ -83,8 +83,8 @@ struct CastulatorView: View {
                                 .padding(.bottom, 12)
                             }
                         }
-                        
-                        
+
+
                         VStack {
                             if vm.running.value.count > 1 {
                                 HStack {
@@ -110,11 +110,11 @@ struct CastulatorView: View {
                                             Image(systemName: Operation.add.toString).resizable().frame(width: 6, height: 6)
                                         }
                                     }
-                                    
+
                                 }.frame(minHeight: 24, maxHeight: 64).padding(.top, -6)
                             }
                         }
-                        
+
                         if vm.running.rhs.result != nil {
                             let runningTotal = Castulation.castulate(lhsTerm: vm.running.total, op: vm.running.rhs.operation, rhsTerm: Double(vm.running.rhs.result!))
                             Divider()
@@ -128,13 +128,13 @@ struct CastulatorView: View {
                                 }
                             }
                         }
-                        
+
                         Spacer()
                     }
-                    
+
                     VStack {
                         Spacer()
-                        
+
                         DicePadView(
                             onDiceButtonPress: vm.handleDiceButtonPress,
                             onOpButtonPress: vm.handleOpButtonPress,
@@ -159,104 +159,5 @@ struct CastulatorView: View {
         .tabItem {
             Label("Castulator", systemImage: "scroll.fill")
         }
-    }
-}
-
-struct DynamicImage: View {
-    @Environment(\.colorScheme) private var colorScheme
-    let image: String
-    init(_ image: String) {
-        self.image = image
-    }
-    
-    var body: some View {
-        if colorScheme == .dark {
-            Image(image).resizable().scaledToFit().colorInvert()
-        } else {
-            Image(image).resizable().scaledToFit()
-        }
-    }
-}
-
-enum Operation: Codable {
-    case add, subtract, multiply, divide
-    
-    var toString: String {
-        switch self {
-        case .add: return "plus"
-        case .subtract: return "minus"
-        case .multiply: return "multiply"
-        case .divide: return "divide"
-        }
-    }
-}
-
-struct TermItem: Equatable, Hashable, Identifiable {
-    let id = UUID()
-    let die: Dice
-    let roll: UInt?
-}
-
-struct Castulation: Identifiable, Equatable {
-    let id = UUID()
-    let operation: Operation
-    let terms: [TermItem]
-    
-    var result: UInt? {
-        let rolls = self.terms.compactMap { $0.roll }
-        
-        return rolls.count > 0
-            ? rolls.reduce(0) { $0 + $1 }
-            : nil
-    }
-    
-    static func castulate(lhsTerm: Double, op: Operation, rhsTerm: Double) -> Double {
-        switch op {
-        case .add: floor(lhsTerm + rhsTerm)
-        case .subtract: floor(lhsTerm - rhsTerm)
-        case .multiply: floor(lhsTerm * rhsTerm)
-        case .divide: floor(lhsTerm / (rhsTerm == 0 ? 1 : rhsTerm))
-        }
-    }
-    
-    init(operation: Operation = .add, terms: [TermItem] = []) {
-        self.operation = operation
-        self.terms = terms
-    }
-    
-    static func == (lhs: Castulation, rhs: Castulation) -> Bool {
-        lhs.id == rhs.id
-    }
-}
-
-struct RunningCastulations {
-    let value: [Castulation]
-    
-    var rhs: Castulation {
-        value.last ?? Castulation()
-    }
-    
-    var lhs: Castulation {
-        value.count <= 1
-            ? Castulation()
-            : value[value.count - 2]
-    }
-    
-    var total: Double {
-        value.reduce(0) { total, castulation in
-            if castulation == value[value.count - 1] {
-                return total
-            }
-            
-            if castulation.result != nil {
-                return Castulation.castulate(lhsTerm: total, op: castulation.operation, rhsTerm: Double(castulation.result!))
-            }
-            
-            return total
-        }
-    }
-    
-    init(value: [Castulation] = [Castulation()]) {
-        self.value = value
     }
 }
