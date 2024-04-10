@@ -1,3 +1,5 @@
+import Foundation
+
 struct Castulation: Identifiable, Equatable {
     let id = UUID()
     let operation: Operation
