@@ -97,15 +97,15 @@
 				597DE9112B16CD6A006A85BC /* MedievalSharp-Regular.ttf */,
 				597DE9072B166221006A85BC /* Assets.xcassets */,
 				597DE9092B166221006A85BC /* Preview Content */,
+				59E573FF2B23AC54008ADF2A /* Castulator.view.swift */,
+				F88FB9862BACD8A8002DD4C9 /* Castulator.viewmodel.swift */,
 				597DE9052B16621F006A85BC /* Content.view.swift */,
+				598EA1772B178BB100E6A93B /* DiceButton.view.swift */,
+				F88FB9882BACDF8D002DD4C9 /* DicePad.view.swift */,
+				59E573FD2B23A716008ADF2A /* QuickCast.view.swift */,
 				598EA1712B1788DC00E6A93B /* QuickCastResult.model.swift */,
 				598EA1752B1789B700E6A93B /* QuickCastResult.view.swift */,
 				59D04A4A2B182A34005631AD /* QuickCastResultHistory.view.swift */,
-				598EA1772B178BB100E6A93B /* DiceButton.view.swift */,
-				59E573FD2B23A716008ADF2A /* QuickCast.view.swift */,
-				59E573FF2B23AC54008ADF2A /* Castulator.view.swift */,
-				F88FB9862BACD8A8002DD4C9 /* Castulator.viewmodel.swift */,
-				F88FB9882BACDF8D002DD4C9 /* DicePad.view.swift */,
 			);
 			path = Castulator;
 			sourceTree = "<group>";
