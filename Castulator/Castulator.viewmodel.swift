@@ -12,6 +12,32 @@ extension CastulatorView {
     class ViewModel {
         var running: RunningCastulations = RunningCastulations()
         
+        var runningTotalIsOutOfRange: Bool {
+            running.total == Double.infinity || running.total > Double(Int.max) || running.total < Double(Int.min)
+        }
+        
+        var runningTotalText: String {
+            runningTotalIsOutOfRange
+                 ? "\(running.total < Double(Int.min) ? "-" : "")Infinity"
+                 : String(Int(running.total))
+        }
+        
+        var result: Double? {
+            running.rhs.result != nil
+                ? Castulation.castulate(lhsTerm: running.total, op: running.rhs.operation, rhsTerm: Double(running.rhs.result!))
+                : nil
+        }
+        
+        var resultIsOutOfRange: Bool {
+            result != nil && (result! == Double.infinity || result! > Double(Int.max) || result! < Double(Int.min))
+        }
+        
+        var resultText: String? {
+            result != nil && resultIsOutOfRange
+                ? "\(result! < Double(Int.min) ? "-" : "")Infinity"
+                : String(Int(result!))
+        }
+        
         func handleDiceButtonPress(_ die: Dice) {
             // if we have a castulation result already, begin a new castulation
             if running.rhs.result != nil {

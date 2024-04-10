@@ -25,6 +25,9 @@
 		F87F4ACB2BC6F9C00064C854 /* RunningCastulations.model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87F4AC52BC6F9C00064C854 /* RunningCastulations.model.swift */; };
 		F87F4ACC2BC6F9C00064C854 /* Castulation.model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87F4AC62BC6F9C00064C854 /* Castulation.model.swift */; };
 		F87F4ACD2BC6F9C00064C854 /* TermItem.model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87F4AC72BC6F9C00064C854 /* TermItem.model.swift */; };
+		F87F4ACF2BC6FF800064C854 /* AppFont.viewmodifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87F4ACE2BC6FF800064C854 /* AppFont.viewmodifier.swift */; };
+		F87F4AD12BC705190064C854 /* RunningTotalText.view.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87F4AD02BC705190064C854 /* RunningTotalText.view.swift */; };
+		F87F4AD32BC71B9F0064C854 /* ResultText.view.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87F4AD22BC71B9F0064C854 /* ResultText.view.swift */; };
 		F88FB9872BACD8A8002DD4C9 /* Castulator.viewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88FB9862BACD8A8002DD4C9 /* Castulator.viewmodel.swift */; };
 		F88FB9892BACDF8D002DD4C9 /* DicePad.view.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88FB9882BACDF8D002DD4C9 /* DicePad.view.swift */; };
 /* End PBXBuildFile section */
@@ -61,6 +64,9 @@
 		F87F4AC52BC6F9C00064C854 /* RunningCastulations.model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunningCastulations.model.swift; sourceTree = "<group>"; };
 		F87F4AC62BC6F9C00064C854 /* Castulation.model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Castulation.model.swift; sourceTree = "<group>"; };
 		F87F4AC72BC6F9C00064C854 /* TermItem.model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermItem.model.swift; sourceTree = "<group>"; };
+		F87F4ACE2BC6FF800064C854 /* AppFont.viewmodifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.viewmodifier.swift; sourceTree = "<group>"; };
+		F87F4AD02BC705190064C854 /* RunningTotalText.view.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningTotalText.view.swift; sourceTree = "<group>"; };
+		F87F4AD22BC71B9F0064C854 /* ResultText.view.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultText.view.swift; sourceTree = "<group>"; };
 		F88FB9862BACD8A8002DD4C9 /* Castulator.viewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Castulator.viewmodel.swift; sourceTree = "<group>"; };
 		F88FB9882BACDF8D002DD4C9 /* DicePad.view.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DicePad.view.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +130,9 @@
 				598EA1712B1788DC00E6A93B /* QuickCastResult.model.swift */,
 				598EA1752B1789B700E6A93B /* QuickCastResult.view.swift */,
 				59D04A4A2B182A34005631AD /* QuickCastResultHistory.view.swift */,
+				F87F4ACE2BC6FF800064C854 /* AppFont.viewmodifier.swift */,
+				F87F4AD02BC705190064C854 /* RunningTotalText.view.swift */,
+				F87F4AD22BC71B9F0064C854 /* ResultText.view.swift */,
 			);
 			path = Castulator;
 			sourceTree = "<group>";
@@ -250,6 +259,7 @@
 				F87F4ACB2BC6F9C00064C854 /* RunningCastulations.model.swift in Sources */,
 				59E574002B23AC54008ADF2A /* Castulator.view.swift in Sources */,
 				F87F4ACC2BC6F9C00064C854 /* Castulation.model.swift in Sources */,
+				F87F4AD12BC705190064C854 /* RunningTotalText.view.swift in Sources */,
 				F87F4ACD2BC6F9C00064C854 /* TermItem.model.swift in Sources */,
 				598EA1782B178BB100E6A93B /* DiceButton.view.swift in Sources */,
 				F88FB9872BACD8A8002DD4C9 /* Castulator.viewmodel.swift in Sources */,
@@ -257,7 +267,9 @@
 				598EA1722B1788DC00E6A93B /* QuickCastResult.model.swift in Sources */,
 				F87F4AC92BC6F9C00064C854 /* Dice.model.swift in Sources */,
 				F87F4AC82BC6F9C00064C854 /* DynamicImage.view.swift in Sources */,
+				F87F4AD32BC71B9F0064C854 /* ResultText.view.swift in Sources */,
 				F87F4ACA2BC6F9C00064C854 /* Operation.model.swift in Sources */,
+				F87F4ACF2BC6FF800064C854 /* AppFont.viewmodifier.swift in Sources */,
 				597DE9042B16621F006A85BC /* CastulatorApp.swift in Sources */,
 				59D04A4B2B182A34005631AD /* QuickCastResultHistory.view.swift in Sources */,
 				59E573FE2B23A716008ADF2A /* QuickCast.view.swift in Sources */,

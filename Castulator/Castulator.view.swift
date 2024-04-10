@@ -18,13 +18,7 @@ struct CastulatorView: View {
                         if vm.running.lhs.result != nil && vm.running.value.count > 2 {
                             HStack{
                                 Spacer()
-                                if vm.running.total == Double.infinity || vm.running.total > Double(Int.max) || vm.running.total < Double(Int.min) {
-                                    Text("\(vm.running.total < Double(Int.min) ? "-" : "")Infinity")
-                                        .font(Font.custom("MedievalSharp", size: 36)).frame(minHeight:24, maxHeight: 64).padding(.vertical, -12)
-                                } else {
-                                    Text(String(Int(vm.running.total)))
-                                        .font(Font.custom("MedievalSharp", size: 36)).frame(minHeight:24, maxHeight: 64).padding(.vertical, -12)
-                                }
+                                RunningTotalView(text: vm.runningTotalText)
                             }
                             .padding(.bottom, 12)
                         } else {
@@ -115,17 +109,11 @@ struct CastulatorView: View {
                             }
                         }
 
-                        if vm.running.rhs.result != nil {
-                            let runningTotal = Castulation.castulate(lhsTerm: vm.running.total, op: vm.running.rhs.operation, rhsTerm: Double(vm.running.rhs.result!))
+                        if vm.result != nil {
                             Divider()
                             HStack {
                                 Spacer()
-                                if runningTotal == Double.infinity || runningTotal > Double(Int.max) || runningTotal < Double(Int.min) {
-                                    Text("\(vm.running.total < Double(Int.min) ? "-" : "")Infinity").font(Font.custom("MedievalSharp", size: 42))
-                                } else {
-                                    Text(String(Int(runningTotal)))
-                                        .font(Font.custom("MedievalSharp", size: 42))
-                                }
+                                ResultTextView(text: vm.resultText ?? "")
                             }
                         }
 
